@@ -1,0 +1,13 @@
+{
+  "name": "@hella/examples",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@hella/reactive": "*",
+    "@hella/store": "*",
+    "@hella/render": "*",
+    "@hella/resource": "*",
+    "@hella/router": "*"
+  }
+}

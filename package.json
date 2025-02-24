@@ -1,0 +1,25 @@
+{
+  "name": "hella-mono",
+  "module": "index.ts",
+  "type": "module",
+  "workspaces": ["packages/*", "global", "examples"],
+  "scripts": {
+    "global": "lerna run build --scope @hella/global",
+    "reactive": "lerna run build --scope @hella/reactive",
+    "store": "lerna run build --scope @hella/store",
+    "render": "lerna run build --scope @hella/render",
+    "router": "lerna run build --scope @hella/router",
+    "resource": "lerna run build --scope @hella/resource",
+    "examples": "lerna run dev --scope @hella/examples",
+    "build": "lerna run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "typescript": "^5.7.3",
+    "lerna": "^8.2.0",
+    "vite": "^6.1.1",
+    "vite-plugin-dts": "^4.5.0"
+  }
+}
