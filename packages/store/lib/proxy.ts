@@ -1,9 +1,7 @@
 import { signal, Signal } from "@hella/reactive";
-import { HELLA_STORES } from "./global";
 import { StoreBase, StoreSignals, StoreValidatedArgs } from "./types";
 import { undefinedStoreProp, readonlyStoreProp } from "./utils";
-
-const { stores } = HELLA_STORES;
+import { storeContext } from "./global";
 
 export function storeSignal<T, V>({
   key,
@@ -13,7 +11,7 @@ export function storeSignal<T, V>({
   options = {},
 }: StoreValidatedArgs<T, V>): Signal<V> {
   const sig = signal(value);
-  const storeData = stores.get(storeProxy);
+  const storeData = storeContext.stores.get(storeProxy);
   const isReadonlyKey = Array.isArray(options.readonly)
     ? options.readonly.includes(key as string)
     : options.readonly;

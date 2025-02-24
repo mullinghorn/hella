@@ -6,6 +6,8 @@ const HELLA_RESOURCE: ResourceHella = {
   activeRequests: new Map(),
 };
 
-const context = ctx() as { HELLA_RESOURCE: ResourceHella };
+const context = ctx();
 
-context.HELLA_RESOURCE = HELLA_RESOURCE;
+context.HELLA_RESOURCE ||= HELLA_RESOURCE;
+
+export const resourceContext = context.HELLA_RESOURCE as ResourceHella;

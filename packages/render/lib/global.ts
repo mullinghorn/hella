@@ -1,8 +1,10 @@
 import { ctx } from "@hella/global";
 import { ComponentRegistry } from "./types";
 
-const context = ctx() as { HELLA_COMPONENTS: ComponentRegistry };
-
 const HELLA_COMPONENTS: ComponentRegistry = new Map();
 
+const context = ctx();
+
 context.HELLA_COMPONENTS ||= HELLA_COMPONENTS;
+
+export const renderContext = context.HELLA_COMPONENTS as ComponentRegistry;

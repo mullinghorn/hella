@@ -8,12 +8,10 @@ import {
 } from "./types";
 import { effect, computed, Signal } from "@hella/reactive";
 import { isFunction, toError } from "@hella/global";
-import { HELLA_STORES } from "./global";
 import { storeProxy, storeSignal } from "./proxy";
 import { destroyStore, updateStore } from "./actions";
 import { storeWithFn } from "./utils";
-
-const { stores } = HELLA_STORES;
+import { storeContext } from "./global";
 
 export function store<T extends Record<string, any>>(
   factory: StoreFactory<T>,
@@ -58,7 +56,7 @@ export function store<T extends Record<string, any>>(
   }
 
   const storeInstance = storeResult(storeBase, options);
-  stores.set(storeInstance, {
+  storeContext.stores.set(storeInstance, {
     store: new Set(),
     effects: storeBase.effects,
   });

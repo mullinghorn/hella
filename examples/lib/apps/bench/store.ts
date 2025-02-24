@@ -19,7 +19,6 @@ export const benchStore = store<BenchStore>(
   (state) => {
     const build = (count: number) => {
       state.data.set(buildData(count));
-      console.log(state.data());
     };
 
     const update = () => {

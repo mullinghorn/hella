@@ -1,4 +1,4 @@
-import { ctx, isFalse, isFunction, isUndefined, toError } from "@hella/global";
+import { isFalse, isFunction, isUndefined, toError } from "@hella/global";
 import {
   maxSubscribersExceeded,
   maxSubscribersLimit,
@@ -12,10 +12,8 @@ import {
   SignalReadArgs,
   SignalSetArgs,
   SignalSubscribers,
-  ReactiveState,
 } from "./types";
-
-const context = ctx() as { HELLA_REACTIVE: ReactiveState };
+import { reactiveContext } from "./global";
 
 /** Core reactive primitive for state management */
 export function signal<T>(initial: T, config?: SignalConfig<T>): Signal<T> {
@@ -36,13 +34,11 @@ export function signal<T>(initial: T, config?: SignalConfig<T>): Signal<T> {
  * Batch multiple signal updates to trigger effects once
  */
 export function batchSignals(fn: () => void): void {
-  context.HELLA_REACTIVE.batchingSignals = true;
+  reactiveContext.batchingSignals = true;
   fn();
-  context.HELLA_REACTIVE.batchingSignals = false;
-  context.HELLA_REACTIVE.pendingEffects.forEach((effect: () => void) =>
-    effect()
-  );
-  context.HELLA_REACTIVE.pendingEffects.clear();
+  reactiveContext.batchingSignals = false;
+  reactiveContext.pendingEffects.forEach((effect: () => void) => effect());
+  reactiveContext.pendingEffects.clear();
 }
 
 /**
@@ -143,8 +139,8 @@ function readSignal<T>({ value, subscribers, state }: SignalReadArgs<T>): T {
   }
 
   state.config?.onRead?.(value);
-  context.HELLA_REACTIVE.activeEffects.length &&
-    subscribers.add(context.HELLA_REACTIVE.activeEffects.at(-1)!);
+  reactiveContext.activeEffects.length &&
+    subscribers.add(reactiveContext.activeEffects.at(-1)!);
 
   return value;
 }
@@ -242,15 +238,13 @@ function notifySubscriber<T>({
   subscribers,
   notify,
 }: Pick<SignalOptions<T>, "subscribers"> & { notify: () => void }) {
-  if (context.HELLA_REACTIVE.batchingSignals) {
+  if (reactiveContext.batchingSignals) {
     const activeSubscribers = new Set(
       [...subscribers].filter(
-        (sub) => !context.HELLA_REACTIVE.disposedEffects.has(sub)
+        (sub) => !reactiveContext.disposedEffects.has(sub)
       )
     );
-    activeSubscribers.forEach((sub) =>
-      context.HELLA_REACTIVE.pendingEffects.add(sub)
-    );
+    activeSubscribers.forEach((sub) => reactiveContext.pendingEffects.add(sub));
     return;
   }
   notify();

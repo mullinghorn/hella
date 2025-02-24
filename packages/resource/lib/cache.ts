@@ -1,21 +1,15 @@
-import { ctx } from "@hella/global";
-import {
-  ResourceCacheArgs,
-  ResourceHella,
-  ResourceUpdateCacheArgs,
-} from "./types";
-
-const context = ctx() as { HELLA_RESOURCE: ResourceHella };
+import { resourceContext } from "./global";
+import { ResourceCacheArgs, ResourceUpdateCacheArgs } from "./types";
 
 export function checkCache<T>({
   key,
   maxAge,
 }: ResourceCacheArgs): T | undefined {
-  const cached = context.HELLA_RESOURCE.cache.get(key);
+  const cached = resourceContext.cache.get(key);
   if (!cached) return undefined;
 
   const isExpired = Date.now() - cached.timestamp > maxAge;
-  isExpired && context.HELLA_RESOURCE.cache.delete(key);
+  isExpired && resourceContext.cache.delete(key);
   return isExpired ? undefined : cached.data;
 }
 
@@ -25,12 +19,12 @@ export function updateCache({
   shouldCache,
 }: ResourceUpdateCacheArgs): void {
   shouldCache &&
-    context.HELLA_RESOURCE.cache.set(key, {
+    resourceContext.cache.set(key, {
       data,
       timestamp: Date.now(),
     });
 }
 
 export function destroyCache(key: string): void {
-  context.HELLA_RESOURCE.cache.delete(key);
+  resourceContext.cache.delete(key);
 }

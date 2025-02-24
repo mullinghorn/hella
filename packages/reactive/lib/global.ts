@@ -8,4 +8,8 @@ const HELLA_REACTIVE: ReactiveState = {
   batchingSignals: false,
 };
 
-ctx().HELLA_REACTIVE ||= HELLA_REACTIVE;
+const context = ctx();
+
+context.HELLA_REACTIVE ||= HELLA_REACTIVE;
+
+export const reactiveContext = context.HELLA_REACTIVE as ReactiveState;

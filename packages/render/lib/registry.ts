@@ -1,19 +1,16 @@
-import { ctx } from "@hella/global";
-import { ComponentRegistry } from "./types";
-
-const context = ctx() as { HELLA_COMPONENTS: ComponentRegistry };
+import { renderContext } from "./global";
 
 export function componentRegistry(root: string) {
-  let component = context.HELLA_COMPONENTS.get(root);
+  let component = renderContext.get(root);
   if (!component) {
     resetComponentRegistry(root);
-    component = context.HELLA_COMPONENTS.get(root);
+    component = renderContext.get(root);
   }
   return component!;
 }
 
 export function resetComponentRegistry(root: string) {
-  context.HELLA_COMPONENTS.set(root, {
+  renderContext.set(root, {
     eventNames: new Set(),
     events: new Map(),
     rootListeners: new Set(),
@@ -22,7 +19,7 @@ export function resetComponentRegistry(root: string) {
 }
 
 export function cleanupComponentRegistry(root: string) {
-  const component = context.HELLA_COMPONENTS.get(root);
+  const component = renderContext.get(root);
   if (!component) return;
 
   for (const cleanup of component.cleanups.values()) {
@@ -31,5 +28,5 @@ export function cleanupComponentRegistry(root: string) {
 
   component.cleanups.clear();
 
-  context.HELLA_COMPONENTS.delete(root);
+  renderContext.delete(root);
 }
