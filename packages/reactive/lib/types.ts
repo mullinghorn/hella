@@ -2,6 +2,7 @@ export interface ReactiveState {
   activeEffects: Array<() => void>;
   pendingEffects: Set<() => void>;
   disposedEffects: WeakSet<() => void>;
+  batchingSignals: boolean;
 }
 
 export interface ReactiveSecurity {

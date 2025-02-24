@@ -6,8 +6,11 @@ import { getRootElement } from "./utils";
 import { effect } from "@hella/reactive";
 import { cleanupDelegatedEvents, removeDelegatedListeners } from "./events";
 import { validateTag, validateElementDepth } from "./validation";
-import { resetComponentRegistry } from "./global";
-import { cleanupComponent, componentRegistry } from "./global";
+import {
+  cleanupComponentRegistry,
+  componentRegistry,
+  resetComponentRegistry,
+} from "./registry";
 
 /**
  * Renders a HellaElement or reactive component to the DOM
@@ -38,7 +41,7 @@ function reactiveRender(
 
   return () => {
     removeDelegatedListeners(rootSelector);
-    cleanupComponent(rootSelector);
+    cleanupComponentRegistry(rootSelector);
     dispose();
     resetComponentRegistry(rootSelector);
   };

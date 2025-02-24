@@ -1,7 +1,11 @@
+import { ctx } from "@hella/global";
 import { ReactiveState } from "./types";
 
-export const HELLA_REACTIVE: ReactiveState = {
+const HELLA_REACTIVE: ReactiveState = {
   activeEffects: [],
   pendingEffects: new Set(),
   disposedEffects: new WeakSet(),
+  batchingSignals: false,
 };
+
+ctx().HELLA_REACTIVE ||= HELLA_REACTIVE;

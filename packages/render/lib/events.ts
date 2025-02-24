@@ -1,4 +1,4 @@
-import { componentRegistry } from "./global";
+import { componentRegistry } from "./registry";
 import { EventHandlerArgs, DelegatedEventArgs } from "./types";
 import { getRootElement } from "./utils";
 import { toError } from "@hella/global";

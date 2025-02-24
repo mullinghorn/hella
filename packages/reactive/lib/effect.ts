@@ -1,8 +1,8 @@
-import { HELLA_REACTIVE } from "./global";
-import { EffectOptions, EffectState } from "./types";
+import { EffectOptions, EffectState, ReactiveState } from "./types";
 import { trackEffect } from "./security";
+import { ctx } from "@hella/global";
 
-const { activeEffects } = HELLA_REACTIVE;
+const context = ctx() as { HELLA_REACTIVE: ReactiveState };
 
 /**
  * Reactive effect that tracks signal dependencies
@@ -20,13 +20,13 @@ export function effect(
     if (!state.active) return;
     state.active = false;
 
-    HELLA_REACTIVE.disposedEffects.add(runner);
+    context.HELLA_REACTIVE.disposedEffects.add(runner);
 
     state.cleanup?.();
     state.deps.clear();
 
-    const index = activeEffects.indexOf(fn);
-    index !== -1 && activeEffects.splice(index, 1);
+    const index = context.HELLA_REACTIVE.activeEffects.indexOf(fn);
+    index !== -1 && context.HELLA_REACTIVE.activeEffects.splice(index, 1);
   };
 }
 
@@ -35,11 +35,12 @@ export function effect(
  */
 function effectRunner(state: EffectState) {
   return function run() {
-    if (!state.active || HELLA_REACTIVE.disposedEffects.has(run)) return;
+    if (!state.active || context.HELLA_REACTIVE.disposedEffects.has(run))
+      return;
 
     state.deps.clear();
 
-    activeEffects.push(run);
+    context.HELLA_REACTIVE.activeEffects.push(run);
 
     try {
       const result = state.fn();
@@ -48,7 +49,7 @@ function effectRunner(state: EffectState) {
         (result as Function)();
       }
     } finally {
-      activeEffects.pop();
+      context.HELLA_REACTIVE.activeEffects.pop();
       trackEffect(run, state.deps);
     }
   };
