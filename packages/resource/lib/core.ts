@@ -1,12 +1,17 @@
-import { GenericPromise, isAbortError, isString, toError } from "@hella/global";
+import {
+  ctx,
+  GenericPromise,
+  isAbortError,
+  isString,
+  toError,
+} from "@hella/global";
 import { resourceConfig, resourceState } from "./utils";
 import { executeRequest } from "./actions";
 import { checkCache, destroyCache, updateCache } from "./cache";
-import { HELLA_RESOURCE } from "./global";
-import { ResourceOptions, ResourceResult } from "./types";
+import { ResourceHella, ResourceOptions, ResourceResult } from "./types";
 import { validatePoolSize, validateResult } from "./validation";
 
-const { activeRequests } = HELLA_RESOURCE;
+const context = ctx() as { HELLA_RESOURCE: ResourceHella };
 
 /**
  * Core resource primitive with caching and retry logic
@@ -31,7 +36,7 @@ export function resource<T>(
 
     state.loading.set(true);
     state.error.set(undefined);
-    activeRequests.set(key, controller);
+    context.HELLA_RESOURCE.activeRequests.set(key, controller);
 
     try {
       const result = await executeRequest({
@@ -49,7 +54,7 @@ export function resource<T>(
       state.error.set(toError(e));
     } finally {
       state.loading.set(false);
-      activeRequests.delete(key);
+      context.HELLA_RESOURCE.activeRequests.delete(key);
     }
   }
 
