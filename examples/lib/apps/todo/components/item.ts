@@ -30,6 +30,6 @@ export const TodoItem = (props: TodoItemProps) => {
         `Added: ${addedAt.toLocaleDateString()}`,
         completedAt && ` Completed: ${completedAt?.toLocaleDateString()}`,
       ]),
-    ]
+    ],
   );
 };

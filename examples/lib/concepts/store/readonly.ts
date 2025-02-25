@@ -12,7 +12,7 @@ const appStore = store<AppStore>(
     mutableProp: 0,
     setReadProp: (value: number) => state.readProp.set(value),
   }),
-  { readonly: ["readProp"] } // Set true for all properties
+  { readonly: ["readProp"] }, // Set true for all properties
 );
 
 appStore.readProp.set(2); // Warning: Cannot modify readonly store signal

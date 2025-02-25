@@ -45,7 +45,7 @@ render(
     tag: "div",
     content: "Hello",
   },
-  "#app"
+  "#app",
 );
 
 // Reactive element
@@ -55,7 +55,7 @@ render(
     classes: { "has-count": count() > 0 },
     content: () => count(),
   }),
-  "#app"
+  "#app",
 );
 ```
 
@@ -112,7 +112,7 @@ render(
       return () => cleanup(); // On unmount
     },
   },
-  "#app"
+  "#app",
 );
 ```
 

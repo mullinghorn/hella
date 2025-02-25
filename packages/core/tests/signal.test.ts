@@ -47,7 +47,7 @@ describe("reactive signals", () => {
 
   test("validation/sanitization", () => {
     expect(() => signal(-1, { validate })).toThrow(
-      "Signal value validation failed"
+      "Signal value validation failed",
     );
   });
 
@@ -63,7 +63,7 @@ describe("reactive signals", () => {
       .map(() => count.subscribe(() => {}));
 
     expect(() => count.subscribe(fn)).toThrow(
-      "Maximum subscriber limit (1000) exceeded"
+      "Maximum subscriber limit (1000) exceeded",
     );
 
     subs.forEach((unsub) => unsub());

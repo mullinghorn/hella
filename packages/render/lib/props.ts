@@ -16,7 +16,7 @@ const HIDDEN_KEYS = new Set(["onRender", "tag", "root"]);
 /* Applies all valid properties from HellaElement to DOM element */
 export function applyProps(
   element: HTMLElement,
-  hellaElement: HellaElement
+  hellaElement: HellaElement,
 ): void {
   if (!hellaElement) return;
 
@@ -74,7 +74,7 @@ function processClass(value: any): string {
       (classes, [className, active]) => {
         return active ? [...classes, className] : classes;
       },
-      [] as string[]
+      [] as string[],
     );
     return classes.length ? classes.join(" ") : "";
   }
@@ -86,7 +86,7 @@ function processClass(value: any): string {
 function regularProp(
   element: HTMLElement,
   key: string,
-  value: PropValue
+  value: PropValue,
 ): void {
   const resolvedValue = isFunction(value) ? value() : value;
   updateProp(element, key, resolvedValue);
@@ -97,7 +97,7 @@ function eventProp(
   element: HTMLElement,
   key: string,
   handler: PropValue,
-  rootSelector: string
+  rootSelector: string,
 ): void {
   if (!isFunction(handler)) {
     throw toError("Event handlers must be a function");

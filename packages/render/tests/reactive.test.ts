@@ -15,7 +15,7 @@ describe("reactive render", () => {
         tag: "div",
         content: count,
       }),
-      "#app"
+      "#app",
     );
 
     await tick();
@@ -33,7 +33,7 @@ describe("reactive render", () => {
         tag: "div",
         classes: { active: active() },
       }),
-      "#app"
+      "#app",
     );
     await tick();
     expect(container.firstElementChild?.className).toBe("");
@@ -53,7 +53,7 @@ describe("reactive render", () => {
           content: item,
         })),
       }),
-      "#app"
+      "#app",
     );
     await tick();
     expect(container.innerHTML).toBe("<ul><li>a</li><li>b</li></ul>");

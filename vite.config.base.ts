@@ -33,4 +33,4 @@ export const viteConfig = ({ name }: any) =>
       pure: ["console.warn", "console.error"],
       legalComments: "none",
     },
-  } as unknown as UserConfig);
+  }) as unknown as UserConfig;

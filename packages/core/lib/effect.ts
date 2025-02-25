@@ -7,7 +7,7 @@ import { reactiveContext } from "./global";
  */
 export function effect(
   fn: () => void,
-  { immediate = false }: EffectOptions = {}
+  { immediate = false }: EffectOptions = {},
 ): () => void {
   const state: EffectState = { active: true, fn, deps: new Set() };
   const runner = effectRunner(state);

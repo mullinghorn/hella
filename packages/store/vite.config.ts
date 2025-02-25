@@ -5,5 +5,5 @@ import { viteConfig } from "../../vite.config.base";
 export default defineConfig(
   viteConfig({
     name: "@hella/store",
-  })
+  }),
 );

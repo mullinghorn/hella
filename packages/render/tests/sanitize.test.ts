@@ -15,7 +15,7 @@ describe("render sanitization", () => {
           // @ts-expect-error
           onclick: "alert('xss')",
         },
-        "#app"
+        "#app",
       );
     }).toThrow();
   });

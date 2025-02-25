@@ -55,7 +55,7 @@ export const benchStore = store<BenchStore>(
             : {
                 ...item,
                 selected: !item.selected,
-              }
+              },
         ),
       ]);
     };
@@ -73,5 +73,5 @@ export const benchStore = store<BenchStore>(
       select,
     };
   },
-  { readonly: [] }
+  { readonly: [] },
 );

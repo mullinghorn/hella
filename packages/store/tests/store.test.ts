@@ -50,7 +50,7 @@ describe("reactive store", () => {
       },
       {
         readonly: ["version"],
-      }
+      },
     );
 
     expect(() => {

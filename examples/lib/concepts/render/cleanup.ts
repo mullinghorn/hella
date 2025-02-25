@@ -14,10 +14,10 @@ const app = render(
         {
           onclick: () => counter.set(counter() + 1),
         },
-        "Increment"
+        "Increment",
       ),
     ]),
-  "#app"
+  "#app",
 );
 
 setTimeout(() => {

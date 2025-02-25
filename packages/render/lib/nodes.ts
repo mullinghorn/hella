@@ -23,7 +23,7 @@ const NODE_TYPES = {
  */
 export function processChildren(
   element: HTMLElement | DocumentFragment,
-  hellaElement: HellaElement
+  hellaElement: HellaElement,
 ): void {
   const { content, root } = hellaElement;
   const batch = document.createDocumentFragment();
@@ -59,7 +59,7 @@ export function diffNodes({
       replaceEvents(
         currentNode as HTMLElement,
         newNode as HTMLElement,
-        rootSelector
+        rootSelector,
       );
       parent.replaceChild(newNode, currentNode);
     } else {
@@ -76,7 +76,7 @@ export function diffNodes({
     batchChildUpdates(
       currentNode,
       Array.from(newNode.childNodes),
-      rootSelector
+      rootSelector,
     );
     return;
   }
@@ -108,7 +108,7 @@ function processChild({
       processFunctionChild(
         child as () => HNodeChild | HNodeChild[],
         element,
-        rootSelector
+        rootSelector,
       );
       break;
     case nodeType.isPrim:
@@ -129,7 +129,7 @@ function processChild({
 function processFunctionChild(
   childFn: () => HNodeChild | HNodeChild[],
   element: HTMLElement | DocumentFragment,
-  rootSelector: string
+  rootSelector: string,
 ): void {
   const result = childFn();
   const nodes = Array.isArray(result) ? result : [result];
@@ -150,7 +150,7 @@ function processFunctionChild(
  */
 function batchAttributeUpdates({ current, next }: BatchUpdateArgs): void {
   const currentAttrs = new Set(
-    Array.from(current.attributes).map((a) => a.name)
+    Array.from(current.attributes).map((a) => a.name),
   );
   const nextAttrs = Array.from(next.attributes);
 
@@ -168,7 +168,7 @@ function batchAttributeUpdates({ current, next }: BatchUpdateArgs): void {
     switch (name) {
       case "class":
         const newClasses = [...hellaClasses, ...value.split(" ")].filter(
-          Boolean
+          Boolean,
         );
         current.className = newClasses.join(" ").trim();
         break;
@@ -204,7 +204,7 @@ const isElementNode = (node: Node): node is HTMLElement =>
 function shouldReplaceNodes(
   current: Node,
   next: Node,
-  types: { isElement: boolean; isText: boolean }
+  types: { isElement: boolean; isText: boolean },
 ): boolean {
   return (
     current.nodeType !== next.nodeType ||
@@ -217,7 +217,7 @@ function shouldReplaceNodes(
 function batchChildUpdates(
   parent: Node,
   newNodes: Node[],
-  rootSelector: string
+  rootSelector: string,
 ): void {
   const currentNodes = Array.from(parent.childNodes);
   const batch = FRAGMENT.cloneNode() as DocumentFragment;
@@ -231,7 +231,7 @@ function batchChildUpdates(
         current: currentNodes[i],
         next: newNodes[i],
         rootSelector,
-      })
+      }),
     );
 
   batch.childNodes.length && parent.appendChild(batch);
@@ -266,7 +266,7 @@ function updateNode({
     replaceEvents(
       current.parentElement || (parent as unknown as HTMLElement),
       next.parentElement || (parent as unknown as HTMLElement),
-      rootSelector
+      rootSelector,
     );
   }
 }

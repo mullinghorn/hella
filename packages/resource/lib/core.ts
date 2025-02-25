@@ -11,7 +11,7 @@ import { resourceContext } from "./global";
  */
 export function resource<T>(
   input: string | GenericPromise<T>,
-  options: ResourceOptions<T> = {}
+  options: ResourceOptions<T> = {},
 ): ResourceResult<T> {
   const state = resourceState<T>();
   const config = resourceConfig(options);

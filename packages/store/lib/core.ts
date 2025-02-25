@@ -14,7 +14,7 @@ import { storeContext } from "./global";
 
 export function store<T extends Record<string, any>>(
   factory: StoreFactory<T>,
-  options: StoreOptions = {}
+  options: StoreOptions = {},
 ): StoreSignals<T> {
   const storeBase: StoreBase<T> = {
     signals: new Map(),
@@ -34,13 +34,13 @@ export function store<T extends Record<string, any>>(
   storeBase.methods.set("effect", storeEffect);
 
   const storeEntries = Object.entries(
-    isFunction(factory) ? factory(proxyStore) : factory
+    isFunction(factory) ? factory(proxyStore) : factory,
   );
   storeBase.isInternal = false;
   for (const [key, value] of storeEntries) {
     isFunction(value)
       ? storeBase.methods.set(key, (...args: any[]) =>
-          storeWithFn({ storeBase, fn: () => value(...args) })
+          storeWithFn({ storeBase, fn: () => value(...args) }),
         )
       : storeBase.signals.set(
           key,
@@ -50,7 +50,7 @@ export function store<T extends Record<string, any>>(
             storeBase,
             storeProxy,
             options,
-          })
+          }),
         );
   }
 
@@ -64,7 +64,7 @@ export function store<T extends Record<string, any>>(
 
 function storeResult<T>(
   storeBase: StoreBase<T>,
-  options: StoreOptions = {}
+  options: StoreOptions = {},
 ): StoreSignals<T> {
   const methods = Object.fromEntries(storeBase.methods);
   const signals = Object.fromEntries(storeBase.signals);
@@ -91,13 +91,13 @@ function storeResult<T>(
       }
       const updates = isFunction(update)
         ? update(
-            Object.fromEntries(storeBase.signals) as unknown as StoreSignals<T>
+            Object.fromEntries(storeBase.signals) as unknown as StoreSignals<T>,
           )
         : update;
       const hasReadonlyViolation = Object.keys(updates).some((key) =>
         Array.isArray(options.readonly)
           ? options.readonly.includes(key)
-          : options.readonly
+          : options.readonly,
       );
       if (hasReadonlyViolation) {
         throw toError("Cannot modify readonly store properties");

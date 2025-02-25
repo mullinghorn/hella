@@ -29,9 +29,9 @@ describe("html helper", () => {
             classes: "btn",
             onclick: onClick,
           },
-          "Click me"
+          "Click me",
         ),
-      "#app"
+      "#app",
     );
 
     await tick();

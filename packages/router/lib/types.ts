@@ -13,7 +13,7 @@ export type Routes = Record<string, RouteHandler>;
 
 // Handler types
 export type RouteHandlerFunction = (
-  params: RouteParams
+  params: RouteParams,
 ) =>
   | void
   | CleanupFunction

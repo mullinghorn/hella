@@ -33,7 +33,7 @@ export type EventHandler = (event: Event) => void;
 export type EventHandlerMap = Record<string, EventHandler>;
 export type EventHandlerProps = {
   [K in keyof HTMLElementEventMap as `on${Lowercase<K>}`]?: (
-    event: HTMLElementEventMap[K]
+    event: HTMLElementEventMap[K],
   ) => void;
 };
 
@@ -121,7 +121,7 @@ export type PropHandler = (
   element: HTMLElement,
   key: string,
   value: PropValue,
-  root: string
+  root: string,
 ) => void;
 
 // Node argument types

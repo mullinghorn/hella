@@ -17,7 +17,7 @@ describe("element events", () => {
           onclick: () => clicks.push(n),
         })),
       }),
-      "#app"
+      "#app",
     );
 
     await tick();
@@ -34,7 +34,7 @@ describe("element events", () => {
         tag: "button",
         onclick: () => {},
       }),
-      "#app"
+      "#app",
     );
     cleanup();
     await tick();
@@ -49,8 +49,8 @@ describe("element events", () => {
           // @ts-expect-error
           onclick: new Function("alert('xss')"),
         },
-        "#app"
-      )
+        "#app",
+      ),
     ).toThrow();
   });
 });

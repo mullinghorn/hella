@@ -11,5 +11,5 @@ render(
     },
     content: "Click me",
   },
-  "#app"
+  "#app",
 );

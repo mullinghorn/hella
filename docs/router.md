@@ -47,7 +47,7 @@ type RouteHandler = string | RouteHandlerFunction;
 type Routes = Record<string, RouteHandler>;
 
 type RouteHandlerFunction = (
-  params: RouteParams
+  params: RouteParams,
 ) => void | CleanupFunction | Promise<void | CleanupFunction>;
 ```
 

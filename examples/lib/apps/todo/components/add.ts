@@ -25,5 +25,5 @@ export const TodoAdd = form(
       },
     }),
     button({ type: "submit" }, "Add"),
-  ]
+  ],
 );

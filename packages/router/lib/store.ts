@@ -115,7 +115,7 @@ async function routePipeline({
 }: RouterUrlArgs): Promise<boolean> {
   const routes = context.state.routes();
   const matchedRoute = Object.entries(routes).find(([pattern]) =>
-    matchRoute(pattern, path)
+    matchRoute(pattern, path),
   );
 
   if (!matchedRoute) return false;
@@ -187,6 +187,6 @@ function initRouter({ context, routes }: RouterInitArgs): void {
   context.state.currentPath.set(path);
   urlManager({ context, path });
   routePipeline({ context, path }).then(() =>
-    emit({ context, event: "afterNavigate", path })
+    emit({ context, event: "afterNavigate", path }),
   );
 }

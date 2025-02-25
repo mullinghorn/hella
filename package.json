@@ -16,7 +16,8 @@
     "build": "lerna run build"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prettier": "^3.5.2"
   },
   "dependencies": {
     "@happy-dom/global-registrator": "^17.1.0",

@@ -3,7 +3,7 @@ import { matchPath } from "./utils";
 
 export function beforeNavigate(
   paths: string[],
-  callback: (path: string) => void
+  callback: (path: string) => void,
 ): () => void {
   const handler = (path: string) =>
     (paths.length === 0 || paths.some((pattern) => matchPath(pattern, path))) &&
@@ -14,7 +14,7 @@ export function beforeNavigate(
 
 export function afterNavigate(
   paths: string[],
-  callback: (path: string) => void
+  callback: (path: string) => void,
 ): () => void {
   const handler = (path: string) =>
     (paths.length === 0 || paths.some((pattern) => matchPath(pattern, path))) &&

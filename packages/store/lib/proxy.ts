@@ -23,7 +23,7 @@ export function storeSignal<T, V>({
         : (...args: [V]) => {
             if (storeBase.isDisposed) {
               return console.warn(
-                `Attempting to update a disposed store signal: ${String(key)}`
+                `Attempting to update a disposed store signal: ${String(key)}`,
               );
             }
             const isReadonlyExternal = isReadonlyKey && !storeBase.isInternal;
@@ -42,9 +42,9 @@ export function storeProxy<T>(storeBase: StoreBase<T>): StoreSignals<T> {
       const key = prop as keyof T;
       return key === "effect"
         ? storeBase.methods.get("effect" as keyof T)
-        : storeBase.signals.get(key) ??
+        : (storeBase.signals.get(key) ??
             storeBase.methods.get(key) ??
-            undefinedStoreProp(prop);
+            undefinedStoreProp(prop));
     },
   });
 }

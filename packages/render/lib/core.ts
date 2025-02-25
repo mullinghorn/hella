@@ -16,14 +16,14 @@ import {
  */
 export function render(
   hellaElement: HellaElement | (() => HellaElement),
-  rootSelector?: string
+  rootSelector?: string,
 ): CleanupFunction {
   if (!hellaElement) return () => void 0;
   return isFunction(hellaElement)
     ? reactiveRender(hellaElement as () => HellaElement, rootSelector)
     : (renderElement(
         hellaElement as HellaElement,
-        rootSelector
+        rootSelector,
       ) as unknown as CleanupFunction);
 }
 
@@ -32,7 +32,7 @@ export function render(
  */
 function reactiveRender(
   hellaElement: () => HellaElement,
-  rootSelector?: string
+  rootSelector?: string,
 ): CleanupFunction {
   if (!rootSelector) throw toError("No mount selector provided");
 
@@ -51,7 +51,7 @@ function reactiveRender(
  */
 function renderEffect(
   hellaElementFn: () => HellaElement,
-  rootSelector: string
+  rootSelector: string,
 ) {
   const hellaElement = hellaElementFn();
   hellaElement.root = rootSelector;
@@ -71,7 +71,7 @@ function renderEffect(
  */
 function renderElement(
   hellaElement: HellaElement,
-  rootSelector?: string
+  rootSelector?: string,
 ): HTMLElement | DocumentFragment {
   hellaElement.onPreRender && hellaElement.onPreRender();
   const isFragment = !hellaElement.tag;
@@ -140,7 +140,7 @@ function createFragmentElement(hellaElement: HellaElement): DocumentFragment {
  */
 function mountElement(
   element: HTMLElement | DocumentFragment,
-  rootSelector: string
+  rootSelector: string,
 ): void {
   const root = getRootElement(rootSelector);
   if (!root) throw toError(`Invalid mount point: ${rootSelector}`);

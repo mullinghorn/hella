@@ -199,7 +199,7 @@ function addSubscriber<T>({ subscribers, state }: SignalOptions<T>) {
   return (fn: () => void) => {
     if (maxSubscribersExceeded(subscribers.size)) {
       throw toError(
-        `Maximum subscriber limit (${maxSubscribersLimit()}) exceeded`
+        `Maximum subscriber limit (${maxSubscribersLimit()}) exceeded`,
       );
     }
 
@@ -216,7 +216,7 @@ function addSubscriber<T>({ subscribers, state }: SignalOptions<T>) {
  */
 function removeSubscriber<T>(
   { subscribers, state }: Pick<SignalOptions<T>, "subscribers" | "state">,
-  fn: () => void
+  fn: () => void,
 ) {
   if (!state.initialized || state.disposed) return;
   subscribers.delete(fn);
@@ -234,8 +234,8 @@ function notifySubscriber<T>({
   if (reactiveContext.batchingSignals) {
     const activeSubscribers = new Set(
       [...subscribers].filter(
-        (sub) => !reactiveContext.disposedEffects.has(sub)
-      )
+        (sub) => !reactiveContext.disposedEffects.has(sub),
+      ),
     );
     activeSubscribers.forEach((sub) => reactiveContext.pendingEffects.add(sub));
     return;

@@ -22,8 +22,8 @@ const App = () =>
           console.log("p:after", counter());
         },
       },
-      counter
-    )
+      counter,
+    ),
   );
 
 render(App, "#app");

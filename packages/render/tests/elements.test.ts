@@ -20,7 +20,7 @@ describe("render elements", () => {
           { tag: "p", content: "Text" },
         ],
       },
-      "#app"
+      "#app",
     );
     expect(container.innerHTML).toBe("<div><h1>Title</h1><p>Text</p></div>");
   });
@@ -33,7 +33,7 @@ describe("render elements", () => {
         classes: "foo bar",
         data: { test: "value" },
       },
-      "#app"
+      "#app",
     );
     const div = container.firstElementChild as HTMLElement;
     expect(div.id).toBe("test");
@@ -47,7 +47,7 @@ describe("render elements", () => {
         tag: "div",
         content: [null, undefined, "valid"],
       },
-      "#app"
+      "#app",
     );
     expect(container.innerHTML).toBe("<div>valid</div>");
   });

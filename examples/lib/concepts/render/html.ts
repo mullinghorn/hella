@@ -9,5 +9,5 @@ render(
     div({ classes: "fizz" }, p("Fizz")),
     div({ classes: "buzz" }, span("Buzz")),
   ]),
-  "#app"
+  "#app",
 );

@@ -49,7 +49,7 @@ type StoreSignals<T> = {
     set(
       update:
         | Partial<StoreState<T>>
-        | ((store: StoreSignals<T>) => Partial<StoreState<T>>)
+        | ((store: StoreSignals<T>) => Partial<StoreState<T>>),
     ): void;
     cleanup(): void;
     computed(): StoreComputed<T>;
@@ -129,7 +129,7 @@ const settings = store(
   }),
   {
     readonly: ["version"],
-  }
+  },
 );
 
 settings.theme.set("dark"); // Works
@@ -234,7 +234,7 @@ const cart = store(() => {
      }),
      {
        readonly: ["role"], // Prevent role modification
-     }
+     },
    );
    ```
 

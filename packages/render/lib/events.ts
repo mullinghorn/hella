@@ -63,7 +63,7 @@ export function removeDelegatedListeners(rootSelector: string): void {
 export function replaceEvents(
   currentNode: HTMLElement,
   newNode: HTMLElement,
-  rootSelector: string
+  rootSelector: string,
 ): void {
   const component = componentRegistry(rootSelector);
   const oldEvents = component.events.get(currentNode);

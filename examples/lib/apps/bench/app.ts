@@ -30,18 +30,18 @@ export const BenchApp = () =>
               style: item.selected ? "color: red" : "",
               onclick: () => benchStore.select(item.id),
             },
-            item.label
+            item.label,
           ),
           td([
             span(
               {
                 onclick: () => benchStore.remove(item.id),
               },
-              "X"
+              "X",
             ),
           ]),
-        ])
-      )
+        ]),
+      ),
     ),
   ]);
 

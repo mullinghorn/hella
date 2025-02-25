@@ -19,7 +19,7 @@ describe("render lifecycle", () => {
         onPreRender: hooks.pre,
         onRender: hooks.post,
       }),
-      "#app"
+      "#app",
     );
 
     await tick();
@@ -34,7 +34,7 @@ describe("render lifecycle", () => {
         tag: "div",
         onRender: () => cleanup,
       }),
-      "#app"
+      "#app",
     );
     await tick();
     dispose();

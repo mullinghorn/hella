@@ -20,7 +20,7 @@ describe("render performance", () => {
           content: item,
         })),
       }),
-      "#app"
+      "#app",
     );
 
     items.set(["single"]);

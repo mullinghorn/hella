@@ -43,7 +43,7 @@ function matchWildcardPath(pattern: string, path: string): boolean {
 function matchWildcardRoute(
   pattern: string,
   path: string,
-  paramNames: string[]
+  paramNames: string[],
 ): RouteParams {
   const result: RouteParams = {};
   const wildcardPortion = getWildcardPortion(pattern, path);
@@ -66,7 +66,7 @@ function matchWildcardRoute(
 function matchStaticRoute(
   pattern: string,
   path: string,
-  paramNames: string[]
+  paramNames: string[],
 ): RouteParams | null {
   const { matches } = createStaticMatch(pattern, path);
   return matches ? extractParamsFromMatches(paramNames, matches) : null;
@@ -100,7 +100,7 @@ function extractParamNames(pattern: string): string[] {
 function extractParams(
   result: RouteParams,
   paramNames: string[],
-  matches: RegExpMatchArray
+  matches: RegExpMatchArray,
 ): void {
   paramNames.forEach((param, index) => {
     result[param] = matches[index + 1];
@@ -110,7 +110,7 @@ function extractParams(
 // Params object from regex matches
 function extractParamsFromMatches(
   paramNames: string[],
-  matches: RegExpMatchArray
+  matches: RegExpMatchArray,
 ): RouteParams {
   return paramNames.reduce((params, param, index) => {
     const value = matches[index + 1];

@@ -11,7 +11,7 @@ export const TodoFilter = div([
         active: todoStore.filter() === "all",
       },
     },
-    "All"
+    "All",
   ),
   button(
     {
@@ -20,7 +20,7 @@ export const TodoFilter = div([
         active: todoStore.filter() === "completed",
       },
     },
-    "Completed"
+    "Completed",
   ),
   button(
     {
@@ -29,6 +29,6 @@ export const TodoFilter = div([
         active: todoStore.filter() === "incomplete",
       },
     },
-    "Incomplete"
+    "Incomplete",
   ),
 ]);

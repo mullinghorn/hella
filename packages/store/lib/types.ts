@@ -35,7 +35,7 @@ export type StoreSignals<T> = {
     set(
       update:
         | Partial<StoreState<T>>
-        | ((storeSignals: StoreSignals<T>) => Partial<StoreState<T>>)
+        | ((storeSignals: StoreSignals<T>) => Partial<StoreState<T>>),
     ): void;
     cleanup(): void;
     computed(): StoreComputed<T>;

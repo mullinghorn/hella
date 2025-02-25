@@ -13,9 +13,9 @@ render(
   () =>
     button(
       { onclick: () => counter.set(counter() + 1) },
-      `Counter: ${counter()}, Double: ${double()}`
+      `Counter: ${counter()}, Double: ${double()}`,
     ),
-  "#app"
+  "#app",
 );
 
 const clear = setInterval(() => {

@@ -60,7 +60,7 @@ export function toggleTodo(id: string) {
             completed: !todo.completed,
             completedAt: !todo.completed ? new Date() : undefined,
           }
-        : todo
+        : todo,
     ),
   ]);
 }

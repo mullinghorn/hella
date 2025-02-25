@@ -11,7 +11,7 @@ export function validatePoolSize(limit: number): void {
 
 export function validateResult<T>(
   result: T,
-  config: Required<ResourceOptions<T>>
+  config: Required<ResourceOptions<T>>,
 ): T {
   if (result === null || result === undefined) {
     throw toError("Resource returned no data");

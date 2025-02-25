@@ -7,7 +7,7 @@ import { signal } from "./signal";
  */
 export function computed<T>(
   fn: () => T,
-  config?: ComputedConfig<T>
+  config?: ComputedConfig<T>,
 ): Signal<T> {
   const state = { initialized: false, fn, config };
   return computedProxy(state);
@@ -56,7 +56,7 @@ function computedCore<T>({ fn, config }: ComputedState<T>): Signal<T> {
         config?.onCompute?.(result);
       }
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   return cache;
