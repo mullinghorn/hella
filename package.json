@@ -2,7 +2,11 @@
   "name": "hella-mono",
   "module": "index.ts",
   "type": "module",
-  "workspaces": ["packages/*", "global", "examples"],
+  "workspaces": [
+    "packages/*",
+    "global",
+    "examples"
+  ],
   "scripts": {
     "global": "lerna run build --scope @hella/global",
     "reactive": "lerna run build --scope @hella/reactive",
@@ -17,8 +21,9 @@
     "@types/bun": "latest"
   },
   "dependencies": {
-    "typescript": "^5.7.3",
+    "@happy-dom/global-registrator": "^17.1.0",
     "lerna": "^8.2.0",
+    "typescript": "^5.7.3",
     "vite": "^6.1.1",
     "vite-plugin-dts": "^4.5.0"
   }

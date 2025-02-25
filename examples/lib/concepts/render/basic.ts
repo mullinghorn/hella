@@ -1,5 +1,4 @@
-import { render } from "@hella/render";
-import { HellaElement } from "../../../lib/render/render.types";
+import { render, HellaElement } from "@hella/render";
 
 const greeting: HellaElement<"div"> = {
   tag: "div",
