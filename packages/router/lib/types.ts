@@ -20,10 +20,10 @@ export type RouteHandlerFunction = (
   | undefined
   | Promise<void | CleanupFunction | undefined>;
 
-export type RoutePatternMatch = {
+export interface RoutePatternMatch {
   matches: RegExpMatchArray | null;
   pattern: string;
-};
+}
 
 // Event types
 export type RouterEventType = "beforeNavigate" | "afterNavigate";
@@ -31,7 +31,7 @@ export type RouterEventHandler = (path: string) => void;
 export type RouterEvents = Record<RouterEventType, Set<RouterEventHandler>>;
 
 // Store types
-export type RouterState = {
+export interface RouterState {
   currentPath: string;
   params: RouteParams;
   routes: Routes;
@@ -42,21 +42,21 @@ export type RouterState = {
   start: (routes: Routes) => void;
   on: (event: RouterEventType, handler: RouterEventHandler) => void;
   off: (event: RouterEventType, handler: RouterEventHandler) => void;
-};
+}
 
-export type RouterContext = {
+export interface RouterContext {
   state: StoreSignals<RouterState>;
   events: RouterEvents;
   isHandlingPopState: boolean;
-};
+}
 
-type RouterContextArg = {
+interface RouterContextArg {
   context: RouterContext;
-};
+}
 
-type RouterPathArg = {
+interface RouterPathArg {
   path: string;
-};
+}
 
 export type RouterNavigationArgs = {
   updateHistory: boolean;

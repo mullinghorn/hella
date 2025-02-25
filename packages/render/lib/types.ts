@@ -3,12 +3,12 @@ import { DynamicValue, Signal } from "@hella/core";
 export type HTMLTagName = keyof HTMLElementTagNameMap;
 
 // Element Types
-export type ComponentRegistryItem = {
+export interface ComponentRegistryItem {
   eventNames: Set<string>;
   events: Map<HTMLElement, Map<string, (event: Event) => void>>;
   rootListeners: Set<(event: Event) => void>;
   cleanups: Map<HTMLElement, () => void>;
-};
+}
 export type ComponentRegistry = Map<string, ComponentRegistryItem>;
 
 export type HProps = Partial<Record<keyof HellaElement, any>>;
@@ -38,18 +38,18 @@ export type EventHandlerProps = {
 };
 
 // Event handler argument types
-export type EventHandlerArgs = {
+export interface EventHandlerArgs {
   element: HTMLElement;
   eventName: string;
   handler: EventHandler;
   rootSelector: string;
-};
+}
 
-export type DelegatedEventArgs = {
+export interface DelegatedEventArgs {
   component: ComponentRegistryItem;
   eventName: string;
   rootSelector: string;
-};
+}
 
 // Element Properties and Configuration
 export type AttributeValue =
@@ -64,14 +64,12 @@ export interface ElementLifecycle {
   onUpdate?: () => void;
 }
 
-export type ClassDefinition = {
-  [key: string]: boolean | (() => boolean);
-};
+export type ClassDefinition = Record<string, boolean | (() => boolean)>;
 
 export type ClassValue =
   | string
   | ClassDefinition
-  | Array<string | undefined | null>
+  | (string | undefined | null)[]
   | (() => ClassValue);
 
 export type HellaElement<T extends HTMLTagName = HTMLTagName> =
@@ -87,10 +85,10 @@ export type HellaElement<T extends HTMLTagName = HTMLTagName> =
     };
 
 // Element Factory Types
-export type ElementFunction<T extends HTMLTagName> = {
+export interface ElementFunction<T extends HTMLTagName> {
   (props?: ElementProps<T>, content?: HNodeChildren): HellaElement;
   (content: HNodeChildren): HellaElement;
-};
+}
 
 export type ElementFactory = {
   [Tag in HTMLTagName]: ElementFunction<Tag>;
@@ -125,32 +123,32 @@ export type PropHandler = (
 ) => void;
 
 // Node argument types
-export type DiffNodesArgs = {
+export interface DiffNodesArgs {
   parent: HTMLElement | DocumentFragment;
   currentNode: Node;
   newNode: Node;
   rootSelector: string;
-};
+}
 
-export type ProcessChildArgs = {
+export interface ProcessChildArgs {
   child: HNodeChild | (() => HNodeChild | HNodeChild[]);
   element: HTMLElement | DocumentFragment;
   rootSelector: string;
-};
+}
 
-export type BatchUpdateArgs = {
+export interface BatchUpdateArgs {
   current: Element;
   next: Element;
-};
+}
 
-export type UpdateNodeArgs = {
+export interface UpdateNodeArgs {
   parent: DocumentFragment;
   current?: Node;
   next?: Node;
   rootSelector: string;
-};
+}
 
-export type NodeTypes = {
+export interface NodeTypes {
   isElement: boolean;
   isText: boolean;
-};
+}

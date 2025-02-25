@@ -5,7 +5,7 @@ export type GenericPromise<T> = () => Promise<T>;
 export type CleanupFunction = () => void;
 
 export interface ReactiveState {
-  activeEffects: Array<() => void>;
+  activeEffects: (() => void)[];
   pendingEffects: Set<() => void>;
   disposedEffects: WeakSet<() => void>;
   batchingSignals: boolean;
@@ -18,12 +18,12 @@ export interface ReactiveSecurity {
 }
 
 // Signal
-export type SignalFunction<T> = {
+export interface SignalFunction<T> {
   (): T;
   set: (value: T) => void;
   subscribe: (fn: () => void) => () => void;
   dispose: () => void;
-};
+}
 
 export type Signal<T> = SignalFunction<T>;
 

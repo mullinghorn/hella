@@ -10,7 +10,7 @@ export interface StoreHella {
   >;
 }
 export interface StoreOptions {
-  readonly?: boolean | Array<string | number | symbol>;
+  readonly?: boolean | (string | number | symbol)[];
 }
 
 export type StoreMethods<T> = {

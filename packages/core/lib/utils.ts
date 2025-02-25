@@ -28,11 +28,11 @@ export function isPrimitive(value: any): value is string | number {
   return isString(value) || isNumber(value);
 }
 
-export function isObject(value: any): value is Object {
+export function isObject(value: any): value is object {
   return typeof value === "object";
 }
 
-export function isRecord(value: any): value is Object {
+export function isRecord(value: any): value is object {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 

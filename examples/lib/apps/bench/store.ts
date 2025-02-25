@@ -1,9 +1,9 @@
 import { store } from "@hella/store";
 import { buildData } from "./data";
 
-type BenchRow = { id: number; label: string; selected: boolean };
+interface BenchRow { id: number; label: string; selected: boolean }
 
-type BenchStore = {
+interface BenchStore {
   data: BenchRow[];
   oneK: () => void;
   tenK: () => void;
@@ -13,7 +13,7 @@ type BenchStore = {
   clear: () => void;
   remove: (id: number) => void;
   select: (id: number) => void;
-};
+}
 
 export const benchStore = store<BenchStore>(
   (state) => {

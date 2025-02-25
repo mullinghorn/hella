@@ -33,7 +33,7 @@ function createElement(tag: HTMLTagName): ElementFunction<typeof tag> {
  * Extracts props and content from function arguments
  */
 function parseArgs(
-  args: Array<HProps | HNodeChildren>,
+  args: (HProps | HNodeChildren)[],
 ): [HProps, HNodeChildren] {
   const first = args[0];
   const second = args[1];
