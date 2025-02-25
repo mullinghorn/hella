@@ -1,4 +1,4 @@
-# HellaJS
+# Hella
 
 A lightweight JavaScript framework for building reactive interfaces.
 
