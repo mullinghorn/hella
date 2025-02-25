@@ -14,7 +14,7 @@ import {
 } from "./setup";
 import { tick } from "@hella/global";
 
-describe("signal", () => {
+describe("reactive signals", () => {
   beforeEach(reactiveTestSetup);
 
   test("operations", () => {

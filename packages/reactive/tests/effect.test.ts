@@ -4,7 +4,7 @@ import { reactiveContext } from "../lib/global";
 import { tick } from "@hella/global";
 import { count, reactiveTestSetup, spy } from "./setup";
 
-describe("effect", () => {
+describe("signal effects", () => {
   beforeEach(reactiveTestSetup);
 
   test("execution", async () => {

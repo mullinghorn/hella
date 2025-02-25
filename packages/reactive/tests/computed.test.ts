@@ -2,7 +2,7 @@ import { describe, test, expect, beforeEach, mock } from "bun:test";
 import { computed, signal } from "../lib";
 import { count, fn, reactiveTestSetup } from "./setup";
 
-describe("computed", () => {
+describe("computed signals", () => {
   beforeEach(reactiveTestSetup);
   test("computation", () => {
     const double = computed(() => count() * 2);

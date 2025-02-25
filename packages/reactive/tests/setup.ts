@@ -13,7 +13,7 @@ export let onDispose: Mock<() => void>;
 export const sanitize = (n: number) => parseInt(n.toFixed(0));
 export const validate = (n: number) => n >= 0;
 
-export const reactiveTestSetup = () => {
+export function reactiveTestSetup() {
   spy = mock(fn);
   onRead = mock(fn);
   onWrite = mock(fn);
@@ -42,4 +42,4 @@ export const reactiveTestSetup = () => {
     onUnsubscribe,
     onDispose,
   };
-};
+}
