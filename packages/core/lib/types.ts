@@ -43,7 +43,7 @@ export interface SignalState<T> {
   config?: SignalConfig<T>;
   signal?: Signal<T>;
   pendingValue?: T;
-  disposed?: boolean; // Add disposed flag
+  disposed?: boolean;
 }
 
 export interface SignalSubscribers {
@@ -97,5 +97,5 @@ export interface EffectState {
   active: boolean;
   fn: () => void;
   deps: Set<Signal<any>>;
-  cleanup?: () => void; // Add cleanup tracking
+  cleanup?: () => void;
 }
