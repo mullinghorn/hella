@@ -24,10 +24,6 @@ A lightweight JavaScript framework for building reactive interfaces.
 - 📦 **Tiny Bundle** - Full framework only under 8kB gzipped
 - 🔍 **Type Safe** - Written in TypeScript with full type inference
 
-## Installation
-
-`npn install hellajs`
-
 ## Core Concepts
 
 ### Reactive Components
