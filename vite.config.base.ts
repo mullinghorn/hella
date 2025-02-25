@@ -20,6 +20,14 @@ export const viteConfig = ({ name }: any) =>
         fileName: (format: string) => `index.${format}.js`,
         formats: ["es", "umd", "cjs"],
       },
+      rollupOptions: {
+        external: ["@hella/core"],
+        output: {
+          globals: {
+            "@hella/core": "Hella",
+          },
+        },
+      },
     },
     esbuild: {
       pure: ["console.warn", "console.error"],

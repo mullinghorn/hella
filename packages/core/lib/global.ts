@@ -1,4 +1,4 @@
-import { ctx } from "@hella/global";
+import { ctx } from "./context";
 import { ReactiveState } from "./types";
 
 const HELLA_REACTIVE: ReactiveState = {

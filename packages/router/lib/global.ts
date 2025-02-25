@@ -1,6 +1,6 @@
 import { StoreSignals } from "@hella/store";
 import { RouterState, RouterEvents, RouterHella } from "./types";
-import { ctx } from "@hella/global";
+import { ctx } from "@hella/core";
 
 const HELLA_ROUTER: RouterHella = {
   store: null as StoreSignals<RouterState> | null,

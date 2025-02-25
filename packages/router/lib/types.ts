@@ -1,4 +1,4 @@
-import { CleanupFunction } from "@hella/global";
+import { CleanupFunction } from "@hella/core";
 import { StoreSignals } from "@hella/store";
 
 export interface RouterHella {

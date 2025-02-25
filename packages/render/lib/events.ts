@@ -1,7 +1,7 @@
 import { componentRegistry } from "./registry";
 import { EventHandlerArgs, DelegatedEventArgs } from "./types";
 import { getRootElement } from "./utils";
-import { toError } from "@hella/global";
+import { toError } from "@hella/core";
 
 /**
  * Attaches event with delegation and security checks
@@ -12,12 +12,10 @@ export function attachEvent({
   handler,
   rootSelector,
 }: EventHandlerArgs): void {
-  /* Validates DOM element before attaching events */
   if (!element || !(element instanceof HTMLElement)) {
     throw toError("Invalid event target");
   }
 
-  /* Sets up event delegation and caching */
   const component = componentRegistry(rootSelector);
   const elementEvents = component.events.get(element) || new Map();
 
@@ -86,7 +84,6 @@ function addDelegatedEvent({
   eventName,
   rootSelector,
 }: DelegatedEventArgs): void {
-  /* Creates event delegation handler with security checks */
   const listener = (event: Event) => {
     const target = event.target as HTMLElement;
     if (!(target instanceof HTMLElement)) return;

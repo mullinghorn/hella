@@ -1,4 +1,4 @@
-import { Signal } from "@hella/reactive";
+import { Signal } from "@hella/core";
 
 export interface StoreHella {
   stores: WeakMap<

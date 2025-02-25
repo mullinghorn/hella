@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeEach, afterEach, spyOn } from "bun:test";
 import { render } from "../lib";
 import { container, renderTestCleanup, renderTestSetup } from "./setup";
-import { tick } from "@hella/global";
+import { tick } from "@hella/core";
 
 describe("element events", () => {
   beforeEach(renderTestSetup);

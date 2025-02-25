@@ -1,5 +1,11 @@
-import { describe, test, expect, beforeEach, mock, Mock } from "bun:test";
-import { batchSignals, effect, signal, maxSubscribersLimit } from "../lib";
+import { describe, test, expect, beforeEach } from "bun:test";
+import {
+  batchSignals,
+  effect,
+  signal,
+  maxSubscribersLimit,
+  tick,
+} from "../lib";
 import {
   count,
   fn,
@@ -12,7 +18,6 @@ import {
   spy,
   validate,
 } from "./setup";
-import { tick } from "@hella/global";
 
 describe("reactive signals", () => {
   beforeEach(reactiveTestSetup);

@@ -4,12 +4,10 @@
   "type": "module",
   "workspaces": [
     "packages/*",
-    "global",
     "examples"
   ],
   "scripts": {
-    "global": "lerna run build --scope @hella/global",
-    "reactive": "lerna run build --scope @hella/reactive",
+    "core": "lerna run build --scope @hella/core",
     "store": "lerna run build --scope @hella/store",
     "render": "lerna run build --scope @hella/render",
     "router": "lerna run build --scope @hella/router",

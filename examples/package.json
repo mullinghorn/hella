@@ -6,7 +6,7 @@
     "preview": "tsc && vite build && vite preview"
   },
   "dependencies": {
-    "@hella/reactive": "*",
+    "@hella/core": "*",
     "@hella/store": "*",
     "@hella/render": "*",
     "@hella/resource": "*",

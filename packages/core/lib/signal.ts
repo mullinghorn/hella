@@ -1,4 +1,4 @@
-import { isFalse, isFunction, isUndefined, toError } from "@hella/global";
+import { isFalse, isFunction, isUndefined, toError } from "./utils";
 import {
   maxSubscribersExceeded,
   maxSubscribersLimit,
@@ -17,12 +17,10 @@ import { reactiveContext } from "./global";
 
 /** Core reactive primitive for state management */
 export function signal<T>(initial: T, config?: SignalConfig<T>): Signal<T> {
-  // Sanitize initial value first
   if (config?.sanitize) {
     initial = config.sanitize(initial);
   }
 
-  // Then validate if needed
   if (!isUndefined(initial) && isFalse(config?.validate?.(initial))) {
     throw toError(`Signal value validation failed: ${initial}`);
   }
@@ -86,7 +84,6 @@ function signalProxy<T>(state: SignalState<T>): Signal<T> {
  */
 function signalCore<T>(state: SignalState<T>): Signal<T> {
   const subscribers = signalSubscribers(state);
-  // Apply sanitization to initial/pending value during core initialization
   const initialValue = state.pendingValue ?? state.initial;
   const value = {
     current: state.config?.sanitize
@@ -95,7 +92,7 @@ function signalCore<T>(state: SignalState<T>): Signal<T> {
   };
 
   function read(): T {
-    if (state.disposed) return value.current; // Return current value if disposed
+    if (state.disposed) return value.current;
     return readSignal({ value: value.current, subscribers, state });
   }
 
@@ -112,11 +109,11 @@ function signalCore<T>(state: SignalState<T>): Signal<T> {
   Object.assign(read, {
     set,
     subscribe: (fn: () => void) => {
-      if (state.disposed) return () => {}; // Return no-op if disposed
+      if (state.disposed) return () => {};
       return subscribers.add(fn);
     },
     dispose: () => {
-      state.disposed = true; // Mark as disposed
+      state.disposed = true;
       state.config?.onDispose?.();
       subscribers.clear();
     },
@@ -129,7 +126,6 @@ function signalCore<T>(state: SignalState<T>): Signal<T> {
  * Read current signal value
  */
 function readSignal<T>({ value, subscribers, state }: SignalReadArgs<T>): T {
-  // Skip validation for undefined values during initialization
   if (
     state.config?.validate &&
     value !== undefined &&
@@ -155,7 +151,6 @@ function setSignal<T>({
   subscribers,
   notify,
 }: SignalSetArgs<T>): void {
-  // Apply sanitization first, even during initialization
   if (state.config?.sanitize) {
     newVal = state.config.sanitize(newVal);
   }
@@ -165,10 +160,8 @@ function setSignal<T>({
     return;
   }
 
-  // Skip if value hasn't changed
   if (value.current === newVal) return;
 
-  // Then do validation if needed
   if (state.config?.validate && state.config.validate(newVal) === false) {
     throw toError(`Signal value validation failed: ${newVal}`);
   }
@@ -225,7 +218,7 @@ function removeSubscriber<T>(
   { subscribers, state }: Pick<SignalOptions<T>, "subscribers" | "state">,
   fn: () => void
 ) {
-  if (!state.initialized || state.disposed) return; // Early return if disposed
+  if (!state.initialized || state.disposed) return;
   subscribers.delete(fn);
   trackSubscriber(state.signal!, subscribers.size);
   state.config?.onUnsubscribe?.(subscribers.size);

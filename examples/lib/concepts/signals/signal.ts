@@ -1,4 +1,4 @@
-import { signal } from "@hella/reactive";
+import { signal } from "@hella/core";
 
 const counter = signal(0, {
   onRead: (value) => console.log(`Counter signal read: ${value}`),

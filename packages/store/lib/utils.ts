@@ -1,4 +1,4 @@
-import { toError } from "@hella/global";
+import { toError } from "@hella/core";
 import { StoreWithFnArgs } from "./types";
 
 export function storeWithFn<T extends Record<string, any>>({

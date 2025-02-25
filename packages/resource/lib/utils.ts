@@ -1,4 +1,4 @@
-import { signal } from "@hella/reactive";
+import { signal } from "@hella/core";
 import { ResourceOptions } from "./types";
 
 /**

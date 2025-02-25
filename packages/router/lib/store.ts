@@ -12,7 +12,7 @@ import {
 } from "./types";
 import { matchRoute } from "./utils";
 import { validatePath, validateNavigationRate } from "./validation";
-import { isString } from "@hella/global";
+import { isString } from "@hella/core";
 import { store } from "@hella/store";
 
 /** Router store factory */

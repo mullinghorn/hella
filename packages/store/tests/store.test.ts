@@ -1,7 +1,7 @@
 import { describe, test, expect, mock } from "bun:test";
 import { store } from "../lib";
-import { tick } from "@hella/global";
-import { computed, effect, signal } from "@hella/reactive";
+import { tick } from "@hella/core";
+import { computed, effect, signal } from "@hella/core";
 
 describe("reactive store", () => {
   test("initial", () => {

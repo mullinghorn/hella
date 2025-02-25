@@ -44,15 +44,13 @@ function computedProxy<T>(state: ComputedState<T>): Signal<T> {
  */
 function computedCore<T>({ fn, config }: ComputedState<T>): Signal<T> {
   config?.onCreate?.();
-  let currentValue = fn(); // Store initial computed value
+  let currentValue = fn();
   const cache = signal(currentValue);
 
-  // Use immediate effect to ensure synchronous updates
   effect(
     () => {
       const result = fn();
       if (result !== currentValue) {
-        // Only update if value changed
         currentValue = result;
         cache.set(result);
         config?.onCompute?.(result);

@@ -1,6 +1,5 @@
-import { toError } from "@hella/global";
+import { toError } from "@hella/core";
 
-// Helper to get the root element from a selector
 export function getRootElement(rootSelector: string): Element {
   const rootElement = document.querySelector(rootSelector);
   if (!rootElement) {

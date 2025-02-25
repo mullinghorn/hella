@@ -8,10 +8,9 @@ import {
   HNodeChild,
 } from "./types";
 import { render } from "./core";
-import { isFalsy, isFunction, isPrimitive, isRecord } from "@hella/global";
+import { isFalsy, isFunction, isPrimitive, isRecord } from "@hella/core";
 import { replaceEvents } from "./events";
 
-// Constants for better reuse
 const FRAGMENT = document.createDocumentFragment();
 const TEXT_TEMPLATE = document.createTextNode("");
 const NODE_TYPES = {
@@ -48,13 +47,11 @@ export function diffNodes({
   newNode,
   rootSelector,
 }: DiffNodesArgs): void {
-  /* Determines if nodes are of same type for diffing strategy */
   const nodeTypes: NodeTypes = {
     isElement: isElementNode(currentNode) && isElementNode(newNode),
     isText: isTextNode(currentNode) && isTextNode(newNode),
   };
 
-  /* Checks if nodes require full replacement */
   const shouldReplace = shouldReplaceNodes(currentNode, newNode, nodeTypes);
 
   if (shouldReplace && !nodeTypes.isText) {
@@ -97,10 +94,8 @@ function processChild({
   element,
   rootSelector,
 }: ProcessChildArgs): void {
-  /* Skips processing of falsy children for performance */
   if (isFalsy(child)) return;
 
-  /* Determines processing strategy based on node type */
   const nodeType = {
     isReactive: isFunction(child),
     isFragment:
@@ -159,30 +154,25 @@ function batchAttributeUpdates({ current, next }: BatchUpdateArgs): void {
   );
   const nextAttrs = Array.from(next.attributes);
 
-  // Only preserve Hella-specific classes (starting with h-)
   const hellaClasses = current.className
     .split(" ")
     .filter((cls) => cls.startsWith("h-"));
 
-  // Remove all attributes that aren't in the new element
   currentAttrs.forEach((name) => {
     if (!next.hasAttribute(name)) {
       current.removeAttribute(name);
     }
   });
 
-  // Update with new attributes
   nextAttrs.forEach(({ name, value }) => {
     switch (name) {
       case "class":
-        // Merge Hella classes with new classes
         const newClasses = [...hellaClasses, ...value.split(" ")].filter(
           Boolean
         );
         current.className = newClasses.join(" ").trim();
         break;
       case "style":
-        // Fully replace style instead of merging
         (current as HTMLElement).style.cssText = value;
         break;
       default:
@@ -202,14 +192,15 @@ function textNodeProxy(text: string): Text {
   return node;
 }
 
-// Type guards
+/**
+ * Utility functions
+ */
 const isTextNode = (node: Node): node is Text =>
   node.nodeType === NODE_TYPES.TEXT;
 
 const isElementNode = (node: Node): node is HTMLElement =>
   node.nodeType === NODE_TYPES.ELEMENT;
 
-// Utility functions below
 function shouldReplaceNodes(
   current: Node,
   next: Node,
@@ -252,10 +243,8 @@ function updateNode({
   next,
   rootSelector,
 }: UpdateNodeArgs): void {
-  /* Handles node addition, removal and updates efficiently */
   if (!current && !next) return;
 
-  /* Removes old nodes that no longer exist */
   if (current && !next && current.parentNode) {
     current.parentNode.removeChild(current);
     return;

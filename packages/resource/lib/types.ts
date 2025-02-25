@@ -1,5 +1,5 @@
-import { GenericPromise } from "@hella/global";
-import { Signal } from "@hella/reactive";
+import { GenericPromise } from "@hella/core";
+import { Signal } from "@hella/core";
 
 export interface ResourceHella {
   cache: Map<string, ResourceCache>;

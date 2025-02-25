@@ -1,4 +1,4 @@
-import { isString, isFunction } from "@hella/global";
+import { isString, isFunction } from "@hella/core";
 import { validateEventHandler } from "./validation";
 
 export const sanitizeValue = (value: any): string => {
@@ -30,6 +30,5 @@ const dangerousProps = new Set([
   "formtarget",
 ]);
 export const shouldSanitizeProp = (key: string): boolean => {
-  // Sanitize all event handlers and dangerous props
   return key.startsWith("on") || dangerousProps.has(key);
 };

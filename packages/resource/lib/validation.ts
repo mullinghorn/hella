@@ -1,4 +1,4 @@
-import { ctx, toError } from "@hella/global";
+import { ctx, toError } from "@hella/core";
 import { ResourceHella, ResourceOptions } from "./types";
 
 const context = ctx() as { HELLA_RESOURCE: ResourceHella };

@@ -1,4 +1,4 @@
-import { ctx } from "@hella/global";
+import { ctx } from "@hella/core";
 import { ResourceHella } from "./types";
 
 const HELLA_RESOURCE: ResourceHella = {

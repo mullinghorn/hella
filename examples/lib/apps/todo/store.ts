@@ -1,4 +1,4 @@
-import { effect } from "@hella/reactive";
+import { effect } from "@hella/core";
 import { store } from "@hella/store";
 import { resource } from "@hella/resource";
 

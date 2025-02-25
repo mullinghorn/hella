@@ -2,7 +2,7 @@ import { ReactiveSecurity, Signal } from "./types";
 
 /**
  * Internal security state for reactive system
- * Using WeakMap to prevent memory leaks and global access
+ * Using WeakMap to prevent memory leaks and core access
  */
 const REACTIVE_SECURITY: ReactiveSecurity = {
   effectDependencies: new WeakMap(),

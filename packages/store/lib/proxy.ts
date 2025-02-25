@@ -1,4 +1,4 @@
-import { signal, Signal } from "@hella/reactive";
+import { signal, Signal } from "@hella/core";
 import { StoreBase, StoreSignals, StoreValidatedArgs } from "./types";
 import { undefinedStoreProp, readonlyStoreProp } from "./utils";
 import { storeContext } from "./global";

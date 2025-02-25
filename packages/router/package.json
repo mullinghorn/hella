@@ -17,9 +17,8 @@
       "require": "./dist/index.cjs.js"
     }
   },
-  "dependencies": {
-    "@hella/store": "*",
-    "@hella/global": "*"
+  "peerDependencies": {
+    "@hella/core": "^0.0.1"
   },
   "files": [
     "dist",

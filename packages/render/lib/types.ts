@@ -1,5 +1,4 @@
-import { DynamicValue } from "@hella/global";
-import { Signal } from "@hella/reactive";
+import { DynamicValue, Signal } from "@hella/core";
 
 export type HTMLTagName = keyof HTMLElementTagNameMap;
 
@@ -8,7 +7,7 @@ export type ComponentRegistryItem = {
   eventNames: Set<string>;
   events: Map<HTMLElement, Map<string, (event: Event) => void>>;
   rootListeners: Set<(event: Event) => void>;
-  cleanups: Map<HTMLElement, () => void>; // Add cleanup tracking
+  cleanups: Map<HTMLElement, () => void>;
 };
 export type ComponentRegistry = Map<string, ComponentRegistryItem>;
 

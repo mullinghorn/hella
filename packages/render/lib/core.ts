@@ -1,9 +1,8 @@
 import { HellaElement } from "./types";
-import { CleanupFunction, isFunction, toError } from "@hella/global";
+import { CleanupFunction, isFunction, toError, effect } from "@hella/core";
 import { applyProps } from "./props";
 import { processChildren, diffNodes } from "./nodes";
 import { getRootElement } from "./utils";
-import { effect } from "@hella/reactive";
 import { cleanupDelegatedEvents, removeDelegatedListeners } from "./events";
 import { validateTag, validateElementDepth } from "./validation";
 import {

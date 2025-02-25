@@ -1,4 +1,4 @@
-import { isFalsy, isFunction, isObject, toError } from "@hella/global";
+import { isFalsy, isFunction, isObject, toError } from "@hella/core";
 import { HellaElement, PropHandler, PropValue } from "./types";
 import { attachEvent } from "./events";
 import { sanitizeValue, sanitizeUrl, shouldSanitizeProp } from "./sanitize";
@@ -40,7 +40,6 @@ function propHandler(key: string): PropHandler | null {
 
 /* Safely updates DOM element attributes with sanitization */
 function updateProp(element: HTMLElement, key: string, value: PropValue): void {
-  // Remove attribute if value is falsy or empty string
   if (isFalsy(value) || value === "") {
     element.removeAttribute(key);
     return;
@@ -50,7 +49,6 @@ function updateProp(element: HTMLElement, key: string, value: PropValue): void {
     ? sanitizeUrl(String(value))
     : sanitizeValue(value);
 
-  // Only set attribute if sanitized value is not empty
   sanitized
     ? element.setAttribute(key, sanitized)
     : element.removeAttribute(key);
@@ -119,7 +117,6 @@ function dataProp(element: HTMLElement, _: string, value: PropValue): void {
 
   Object.entries(value).forEach(([key, val]) => {
     const sanitized = sanitizeValue(val);
-    // Only set data attribute if value exists
     sanitized
       ? element.setAttribute(`data-${key}`, sanitized)
       : element.removeAttribute(`data-${key}`);

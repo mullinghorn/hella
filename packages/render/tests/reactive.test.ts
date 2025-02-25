@@ -1,8 +1,8 @@
 import { describe, test, expect, beforeEach, afterEach } from "bun:test";
 import { render } from "../lib";
 import { container, renderTestCleanup, renderTestSetup } from "./setup";
-import { signal } from "@hella/reactive";
-import { tick } from "@hella/global";
+import { signal } from "@hella/core";
+import { tick } from "@hella/core";
 
 describe("reactive render", () => {
   beforeEach(renderTestSetup);

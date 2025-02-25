@@ -1,5 +1,5 @@
 {
-  "name": "@hella/reactive",
+  "name": "@hella/core",
   "description": "signal based reactivity",
   "version": "0.0.1",
   "type": "module",
@@ -16,9 +16,6 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     }
-  },
-  "dependencies": {
-    "@hella/global": "*"
   },
   "files": [
     "dist",

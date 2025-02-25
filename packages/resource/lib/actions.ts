@@ -4,7 +4,7 @@ import {
   isAbortError,
   isString,
   toError,
-} from "@hella/global";
+} from "@hella/core";
 import { ResourceJSONArgs, ResourceRequestArgs } from "./types";
 
 /**
