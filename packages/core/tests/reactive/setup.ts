@@ -1,7 +1,7 @@
 import { reactiveContext, signal, Signal } from "../../lib";
 import { mock, Mock } from "bun:test";
 
-export const fn = () => {};
+export const fn = () => { return };
 
 export let count: Signal<number>;
 export let spy: Mock<(_?: number) => void>;

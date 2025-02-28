@@ -33,8 +33,8 @@ describe("signal effects", () => {
   });
 
   test("nested", async () => {
-    const outer = mock((_: number) => {});
-    const inner = mock((_: number) => {});
+    const outer = mock((_: number) => _);
+    const inner = mock((_: number) => _);
 
     effect(() => {
       outer(count());
@@ -50,7 +50,7 @@ describe("signal effects", () => {
   });
 
   test("disposal", async () => {
-    const spy = mock((_: number) => {});
+    const spy = mock((_: number) => _);
 
     const dispose = effect(() => {
       spy(count());

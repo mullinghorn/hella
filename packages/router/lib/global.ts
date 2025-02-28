@@ -15,6 +15,6 @@ const context: Context<{
 }> = ctx();
 
 
-context.HELLA_ROUTER ||= HELLA_ROUTER;
+context.HELLA_ROUTER ??= HELLA_ROUTER;
 
 export const routerContext = context.HELLA_ROUTER;

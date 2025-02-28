@@ -13,6 +13,6 @@ const context: Context<{
   HELLA_REACTIVE?: ReactiveState;
 }> = ctx();
 
-context.HELLA_REACTIVE ||= HELLA_REACTIVE;
+context.HELLA_REACTIVE ??= HELLA_REACTIVE;
 
 export const reactiveContext = context.HELLA_REACTIVE;

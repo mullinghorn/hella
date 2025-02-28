@@ -56,10 +56,10 @@ export function toggleTodo(id: string) {
     ...todoStore.todos().map((todo) =>
       todo.id === id
         ? {
-            ...todo,
-            completed: !todo.completed,
-            completedAt: !todo.completed ? new Date() : undefined,
-          }
+          ...todo,
+          completed: !todo.completed,
+          completedAt: !todo.completed ? new Date() : undefined,
+        }
         : todo,
     ),
   ]);
@@ -80,7 +80,7 @@ export function cleanupTodoStore() {
 }
 
 export function filteredTodos(todos?: Todo[]): Todo[] {
-  todos ||= todoStore.todos();
+  todos ??= todoStore.todos();
   switch (todoStore.filter()) {
     case "completed":
       return todos.filter((t) => t.completed);

@@ -12,7 +12,7 @@ describe("render sanitization", () => {
         {
           tag: "a",
           href: "javascript:alert('xss')",
-          // @ts-expect-error
+          // @ts-expect-error invalid attribute
           onclick: "alert('xss')",
         },
         "#app",

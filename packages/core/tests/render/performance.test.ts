@@ -15,7 +15,7 @@ describe("render performance", () => {
     render(
       () => ({
         tag: "ul",
-        content: items().map((item) => ({
+        content: items().map((item: number) => ({
           tag: "li",
           content: item,
         })),

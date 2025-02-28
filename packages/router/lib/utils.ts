@@ -93,7 +93,7 @@ function createStaticMatch(pattern: string, path: string): RoutePatternMatch {
 
 // Extracts parameter names from route pattern
 function extractParamNames(pattern: string): string[] {
-  return pattern.match(/:[^/]+/g)?.map((param) => param.slice(1)) || [];
+  return pattern.match(/:[^/]+/g)?.map((param) => param.slice(1)) ?? [];
 }
 
 // Maps matched parameters to their names

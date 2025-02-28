@@ -9,6 +9,6 @@ const context: Context<{
   HELLA_STORES?: StoreHella;
 }> = ctx();
 
-context.HELLA_STORES ||= HELLA_STORES;
+context.HELLA_STORES ??= HELLA_STORES;
 
 export const storeContext = context.HELLA_STORES;

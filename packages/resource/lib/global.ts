@@ -10,6 +10,6 @@ const context: Context<{
   HELLA_RESOURCE?: ResourceHella;
 }> = ctx();
 
-context.HELLA_RESOURCE ||= HELLA_RESOURCE;
+context.HELLA_RESOURCE ??= HELLA_RESOURCE;
 
 export const resourceContext = context.HELLA_RESOURCE;

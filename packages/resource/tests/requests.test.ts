@@ -37,14 +37,14 @@ describe("resource requests", () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  test("pooling", async () => {
+  test("pooling", () => {
     globalThis.fetch = mock(() => Promise.resolve(mockJsonResponse(testUser)));
 
     const results: ResourceResult<User>[] = [];
     const poolSize = 2;
 
     for (let i = 0; i < poolSize + 1; i++) {
-      results.push(resource<User>(`${testUrl}/${i}`, { poolSize }));
+      results.push(resource<User>(`${testUrl}/${String(i)}`, { poolSize }));
     }
 
     expect(Promise.all(results.map((r) => r.fetch()))).rejects.toThrow();

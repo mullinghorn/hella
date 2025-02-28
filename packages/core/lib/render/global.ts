@@ -9,6 +9,6 @@ const context: Context<{
 }> = ctx();
 
 
-context.HELLA_COMPONENTS ||= HELLA_COMPONENTS;
+context.HELLA_COMPONENTS ??= HELLA_COMPONENTS;
 
 export const renderContext = context.HELLA_COMPONENTS;

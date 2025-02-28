@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach, afterEach } from "bun:test";
 import { html, render } from "../../lib";
-import { container, renderTestCleanup, renderTestSetup } from "./setup";
+import { container, fn, renderTestCleanup, renderTestSetup } from "./setup";
 import { tick } from "@hella/core";
 
 describe("html helper", () => {
@@ -21,13 +21,12 @@ describe("html helper", () => {
 
   test("props", async () => {
     const { button } = html;
-    const onClick = () => {};
     render(
       () =>
         button(
           {
             classes: "btn",
-            onclick: onClick,
+            onclick: fn,
           },
           "Click me",
         ),

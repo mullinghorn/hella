@@ -19,7 +19,7 @@ export function resourceTestCleanup() {
   globalThis.fetch = originalFetch;
 }
 
-export function mockJsonResponse(data: any) {
+export function mockJsonResponse(data: unknown) {
   return new Response(JSON.stringify(data), {
     status: 200,
     headers: { "Content-Type": "application/json" },

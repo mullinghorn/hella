@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach, afterEach, spyOn } from "bun:test";
 import { render } from "../../lib";
-import { container, renderTestCleanup, renderTestSetup } from "./setup";
+import { container, fn, renderTestCleanup, renderTestSetup } from "./setup";
 import { tick } from "@hella/core";
 
 describe("element events", () => {
@@ -32,7 +32,7 @@ describe("element events", () => {
     const cleanup = render(
       () => ({
         tag: "button",
-        onclick: () => {},
+        onclick: fn,
       }),
       "#app",
     );
@@ -46,7 +46,8 @@ describe("element events", () => {
       render(
         {
           tag: "button",
-          // @ts-expect-error
+          // @ts-expect-error invalid event
+          // eslint-disable-next-line @typescript-eslint/no-implied-eval
           onclick: new Function("alert('xss')"),
         },
         "#app",
