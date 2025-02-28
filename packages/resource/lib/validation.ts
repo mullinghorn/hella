@@ -1,10 +1,9 @@
-import { ctx, toError } from "@hella/core";
-import { ResourceHella, ResourceOptions } from "./types";
-
-const context = ctx() as { HELLA_RESOURCE: ResourceHella };
+import { toError } from "@hella/core";
+import { ResourceOptions } from "./types";
+import { resourceContext } from "./global";
 
 export function validatePoolSize(limit: number): void {
-  if (context.HELLA_RESOURCE.activeRequests.size >= limit) {
+  if (resourceContext.activeRequests.size >= limit) {
     throw toError("Resource pool limit reached");
   }
 }

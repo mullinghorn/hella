@@ -1,12 +1,14 @@
+import { Context } from "./types";
 import { isUndefined } from "./utils";
 
-export const ctx = () => {
+export const ctx = (): Context<{}> => {
   if (!isUndefined(window)) {
-    return window as any;
-  }
-  if (!isUndefined(global)) {
-    return global as any;
+    return window as Window;
   }
 
-  return {} as any;
+  if (!isUndefined(global)) {
+    return global;
+  }
+
+  return globalThis;
 };

@@ -1,4 +1,5 @@
 import { ctx } from "../context";
+import { Context } from "../types";
 import { ReactiveState } from "./types";
 
 const HELLA_REACTIVE: ReactiveState = {
@@ -8,8 +9,10 @@ const HELLA_REACTIVE: ReactiveState = {
   batchingSignals: false,
 };
 
-const context = ctx();
+const context: Context<{
+  HELLA_REACTIVE?: ReactiveState;
+}> = ctx();
 
 context.HELLA_REACTIVE ||= HELLA_REACTIVE;
 
-export const reactiveContext = context.HELLA_REACTIVE as ReactiveState;
+export const reactiveContext = context.HELLA_REACTIVE;

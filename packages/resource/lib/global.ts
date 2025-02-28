@@ -1,4 +1,4 @@
-import { ctx } from "@hella/core";
+import { Context, ctx } from "@hella/core";
 import { ResourceHella } from "./types";
 
 const HELLA_RESOURCE: ResourceHella = {
@@ -6,8 +6,10 @@ const HELLA_RESOURCE: ResourceHella = {
   activeRequests: new Map(),
 };
 
-const context = ctx();
+const context: Context<{
+  HELLA_RESOURCE?: ResourceHella;
+}> = ctx();
 
 context.HELLA_RESOURCE ||= HELLA_RESOURCE;
 
-export const resourceContext = context.HELLA_RESOURCE as ResourceHella;
+export const resourceContext = context.HELLA_RESOURCE;

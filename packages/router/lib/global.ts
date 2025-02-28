@@ -1,6 +1,6 @@
 import { StoreSignals } from "@hella/store";
 import { RouterState, RouterEvents, RouterHella } from "./types";
-import { ctx } from "@hella/core";
+import { Context, ctx } from "@hella/core";
 
 const HELLA_ROUTER: RouterHella = {
   store: null as StoreSignals<RouterState> | null,
@@ -10,8 +10,11 @@ const HELLA_ROUTER: RouterHella = {
   } as RouterEvents,
 };
 
-const context = ctx();
+const context: Context<{
+  HELLA_ROUTER?: RouterHella;
+}> = ctx();
+
 
 context.HELLA_ROUTER ||= HELLA_ROUTER;
 
-export const routerContext = context.HELLA_ROUTER as RouterHella;
+export const routerContext = context.HELLA_ROUTER;
