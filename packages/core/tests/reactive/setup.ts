@@ -1,4 +1,4 @@
-import { reactiveContext, signal, Signal } from "../lib";
+import { reactiveContext, signal, Signal } from "../../lib";
 import { mock, Mock } from "bun:test";
 
 export const fn = () => {};

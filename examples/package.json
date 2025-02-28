@@ -8,7 +8,6 @@
   "dependencies": {
     "@hella/core": "*",
     "@hella/store": "*",
-    "@hella/render": "*",
     "@hella/resource": "*",
     "@hella/router": "*"
   }

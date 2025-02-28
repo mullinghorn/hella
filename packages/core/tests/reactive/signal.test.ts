@@ -5,7 +5,7 @@ import {
   signal,
   maxSubscribersLimit,
   tick,
-} from "../lib";
+} from "../../lib";
 import {
   count,
   fn,

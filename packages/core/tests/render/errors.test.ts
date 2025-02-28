@@ -1,5 +1,5 @@
 import { describe, test, expect } from "bun:test";
-import { render } from "../lib";
+import { render } from "../../lib";
 
 describe("render errors", () => {
   test("mount", () => {

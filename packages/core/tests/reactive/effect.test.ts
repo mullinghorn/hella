@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach, mock } from "bun:test";
-import { signal, effect, tick } from "../lib";
+import { signal, effect, tick } from "../../lib";
 import { count, reactiveTestSetup, spy } from "./setup";
 
 describe("signal effects", () => {

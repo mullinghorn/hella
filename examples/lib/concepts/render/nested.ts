@@ -1,4 +1,4 @@
-import { render } from "@hella/render";
+import { render } from "@hella/core";
 
 render(
   {

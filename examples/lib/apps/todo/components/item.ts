@@ -1,4 +1,4 @@
-import { html } from "@hella/render";
+import { html } from "@hella/core";
 import { toggleTodo } from "../store";
 
 const { li, input, span } = html;

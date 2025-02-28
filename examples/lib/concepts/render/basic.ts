@@ -1,4 +1,4 @@
-import { render, HellaElement } from "@hella/render";
+import { render, HellaElement } from "@hella/core";
 
 const greeting: HellaElement<"div"> = {
   tag: "div",

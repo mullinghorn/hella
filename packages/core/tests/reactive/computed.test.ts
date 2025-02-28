@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach, mock } from "bun:test";
-import { computed, signal } from "../lib";
+import { computed, signal } from "../../lib";
 import { count, fn, reactiveTestSetup } from "./setup";
 
 describe("computed signals", () => {

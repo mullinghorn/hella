@@ -1,4 +1,4 @@
-import { html } from "@hella/render";
+import { html } from "@hella/core";
 import { filteredTodos } from "../store";
 import { TodoItem } from "./item";
 

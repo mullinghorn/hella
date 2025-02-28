@@ -1,5 +1,4 @@
-import { render, html } from "@hella/render";
-import { signal, computed, effect } from "@hella/core";
+import { render, html, signal, computed, effect } from "@hella/core";
 
 const counter = signal(0);
 const double = computed(() => counter() * 2);

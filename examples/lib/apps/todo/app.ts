@@ -1,4 +1,4 @@
-import { html, render } from "@hella/render";
+import { html, render } from "@hella/core";
 import { TodoAdd } from "./components/add";
 import { TodoFilter } from "./components/filter";
 import { TodoList } from "./components/list";

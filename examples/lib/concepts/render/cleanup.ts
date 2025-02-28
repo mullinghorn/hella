@@ -1,5 +1,4 @@
-import { render, html } from "@hella/render";
-import { signal } from "@hella/core";
+import { render, html, signal } from "@hella/core";
 
 const { div, h1, p, button } = html;
 

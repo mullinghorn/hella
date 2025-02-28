@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach, afterEach } from "bun:test";
-import { render } from "../lib";
+import { render } from "../../lib";
 import { container, renderTestCleanup, renderTestSetup } from "./setup";
 import { tick } from "@hella/core";
 import { signal } from "@hella/core";

@@ -1,6 +1,5 @@
-import { html } from "@hella/render";
+import { html, signal } from "@hella/core";
 import { addTodo } from "../store";
-import { signal } from "@hella/core";
 
 const { form, input, button } = html;
 const todoInput = signal("");
