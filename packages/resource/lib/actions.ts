@@ -46,7 +46,7 @@ export async function fetchJSON<T>({
   const response = await fetch(url, { signal });
   if (!response.ok) {
     onError?.(response);
-    throw toError(`HTTP error! status: ${response.status}`);
+    throw toError(`HTTP error! status: ${String(response.status)}`);
   }
-  return response.json();
+  return response.json() as Promise<T>;
 }

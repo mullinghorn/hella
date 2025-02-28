@@ -24,8 +24,8 @@ export function resourceConfig<T>(options: ResourceOptions<T>) {
     retryDelay: 1000,
     poolSize: 10,
     transform: (data: T) => data,
-    validate: (_: T) => true,
-    onError: (_: Response) => undefined,
+    validate: () => true,
+    onError: () => undefined,
     ...options,
   };
 }

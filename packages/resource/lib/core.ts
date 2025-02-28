@@ -19,9 +19,9 @@ export function resource<T>(
   const controller = new AbortController();
 
   async function fetch(): Promise<void> {
-    const cached = checkCache<T>({ key, maxAge: config.cacheTime });
+    const cached = checkCache({ key, maxAge: config.cacheTime });
     if (cached) {
-      state.data.set(cached);
+      state.data.set(cached as unknown as T);
       return;
     }
 

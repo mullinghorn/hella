@@ -15,10 +15,10 @@ export type Routes = Record<string, RouteHandler>;
 export type RouteHandlerFunction = (
   params: RouteParams,
 ) =>
-  | void
   | CleanupFunction
   | undefined
-  | Promise<void | CleanupFunction | undefined>;
+  | void
+  | Promise<CleanupFunction | undefined | void>;
 
 export interface RoutePatternMatch {
   matches: RegExpMatchArray | null;
@@ -37,8 +37,8 @@ export interface RouterState {
   routes: Routes;
   currentCleanup: CleanupFunction | null;
   history: string[];
-  navigate: (path: string) => void;
-  back: (path?: string) => void;
+  navigate: (path: string) => Promise<boolean>;
+  back: (path?: string) => Promise<void>;
   start: (routes: Routes) => void;
   on: (event: RouterEventType, handler: RouterEventHandler) => void;
   off: (event: RouterEventType, handler: RouterEventHandler) => void;

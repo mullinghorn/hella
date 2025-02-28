@@ -29,9 +29,9 @@ export interface ResourceResult<T> {
 }
 
 export interface ResourceCache {
-  data: any;
+  data: unknown;
   timestamp: number;
-  promise?: Promise<any>;
+  promise?: Promise<unknown>;
 }
 
 export interface ResourceRequestArgs<T> {
@@ -53,6 +53,6 @@ export interface ResourceCacheArgs {
 
 export interface ResourceUpdateCacheArgs {
   key: string;
-  data: any;
+  data: unknown;
   shouldCache: boolean;
 }

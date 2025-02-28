@@ -60,7 +60,7 @@ describe("reactive signals", () => {
     const limit = maxSubscribersLimit();
     const subs = Array(limit + 1)
       .fill(null)
-      .map(() => count.subscribe(fn));
+      .map(() => count.subscribe(() => { return }));
 
     expect(() => count.subscribe(fn)).toThrow(
       "Maximum subscriber limit (1000) exceeded",

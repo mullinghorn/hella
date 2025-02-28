@@ -12,7 +12,7 @@ import {
 } from "./types";
 import { matchRoute } from "./utils";
 import { validatePath, validateNavigationRate } from "./validation";
-import { isString } from "@hella/core";
+import { CleanupFunction, isString } from "@hella/core";
 import { store } from "@hella/store";
 
 /** Router store factory */
@@ -37,15 +37,20 @@ export function router() {
     return {
       ...initialState,
       start: (routes: Routes) => { initRouter({ context, routes }); },
-      navigate: (path: string) =>
-        navigationPipeline({
+      navigate: async (path: string) =>
+        await navigationPipeline({
           context,
           path,
           updateHistory: true,
         }),
-      back: (fallback?: string) => {
+      back: async (fallback?: string) => {
         const hasHistory = state.history().length > 1;
-        hasHistory ? history.back() : fallback && state.navigate(fallback);
+        if (hasHistory) {
+          history.back()
+        }
+        if (fallback && !hasHistory) {
+          await state.navigate(fallback)
+        }
       },
       on: (event, handler) => context.events[event].add(handler),
       off: (event, handler) => context.events[event].delete(handler),
@@ -61,7 +66,7 @@ function emit({ context, event, path }: RouterEmitArgs): void {
     try {
       handler(path);
     } catch (err) {
-      console.error(`Router event handler error: ${err}`);
+      console.error(`Router event handler error: ${String(err)}`);
     }
   });
 }
@@ -86,8 +91,8 @@ async function executeRoute({
   cleanup?.();
 
   context.state.params.set(params);
-  const newCleanup = await handler(params);
-  context.state.currentCleanup.set(newCleanup || null);
+  const newCleanup: CleanupFunction = await handler(params);
+  context.state.currentCleanup.set(newCleanup);
 
   return true;
 }
@@ -104,7 +109,9 @@ async function redirectPipeline({
     updateHistory: true,
     skipEvents: true,
   });
-  result && emit({ context, event: "afterNavigate", path });
+  if (result) {
+    emit({ context, event: "afterNavigate", path })
+  }
   return result;
 }
 
@@ -126,10 +133,10 @@ async function routePipeline({
   return isString(handler)
     ? redirectPipeline({ context, path: handler })
     : executeRoute({
-        context,
-        handler: handler as CallableFunction,
-        params: params!,
-      });
+      context,
+      handler: handler as CallableFunction,
+      params: params ?? {},
+    });
 }
 
 /** Manage navigation state and validation */
@@ -146,14 +153,19 @@ async function navigationPipeline({
     return false;
   }
 
-  !skipEvents && emit({ context, event: "beforeNavigate", path });
+  if (!skipEvents) {
+    emit({ context, event: "beforeNavigate", path })
+  }
 
-  const result =
-    path === context.state.currentPath()
-      ? true
-      : await navigateToPath({ context, path, updateHistory });
+  let result = true;
+  if (path !== context.state.currentPath()) {
+    result = await navigateToPath({ context, path, updateHistory })
+  }
 
-  !skipEvents && result && emit({ context, event: "afterNavigate", path });
+  if (!skipEvents && result) {
+    emit({ context, event: "afterNavigate", path });
+  }
+
   return result;
 }
 
@@ -163,30 +175,31 @@ async function navigateToPath({
   path,
   updateHistory,
 }: RouterNavigatePathArgs): Promise<boolean> {
-  updateHistory && urlManager({ context, path });
+  if (updateHistory) {
+    urlManager({ context, path })
+  }
   return routePipeline({ context, path });
 }
 
 /** Handle popstate events */
-async function popStateHandler(context: RouterContext): Promise<void> {
+function popStateHandler(context: RouterContext) {
   if (context.isHandlingPopState) return;
 
   context.isHandlingPopState = true;
   const path = window.location.pathname;
   context.state.currentPath.set(path);
-  await routePipeline({ context, path });
-  context.isHandlingPopState = false;
+  routePipeline({ context, path }).then(() => {
+    context.isHandlingPopState = false;
+  }).catch(console.error);
 }
 
 /** Initialize router with routes */
 function initRouter({ context, routes }: RouterInitArgs): void {
   context.state.routes.set(routes);
-  window.addEventListener("popstate", () => popStateHandler(context));
+  window.addEventListener("popstate", () => { popStateHandler(context); });
   const path = window.location.pathname;
   emit({ context, event: "beforeNavigate", path });
   context.state.currentPath.set(path);
   urlManager({ context, path });
-  routePipeline({ context, path }).then(() =>
-    { emit({ context, event: "afterNavigate", path }); },
-  );
+  routePipeline({ context, path }).then(() => { emit({ context, event: "afterNavigate", path }); }).catch(console.error);
 }
