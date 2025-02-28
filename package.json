@@ -13,20 +13,23 @@
     "resource": "lerna run build --scope @hella/resource",
     "examples": "lerna run dev --scope @hella/examples",
     "prettier": "prettier . --write",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "lint": "eslint --fix"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@types/bun": "latest",
-    "eslint": "^9.21.0",
-    "prettier": "^3.5.2",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.25.0"
-  },
-  "dependencies": {
     "@happy-dom/global-registrator": "^17.1.0",
-    "lerna": "^8.2.0",
+    "@stylistic/eslint-plugin": "^4.1.0",
+    "@types/bun": "latest",
+    "@types/eslint__js": "^9.14.0",
+    "ajv": "^8.17.1",
+    "eslint": "^9.21.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.25.0",
     "vite": "^6.1.1",
     "vite-plugin-dts": "^4.5.0"
+  },
+  "dependencies": {
+    "lerna": "^8.2.0"
   }
 }

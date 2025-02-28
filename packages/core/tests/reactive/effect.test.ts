@@ -6,7 +6,7 @@ describe("signal effects", () => {
   beforeEach(reactiveTestSetup);
 
   test("execution", async () => {
-    effect(() => spy(count()));
+    effect(() => { spy(count()); });
 
     await tick();
     expect(spy).toHaveBeenCalledWith(0);

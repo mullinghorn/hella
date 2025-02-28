@@ -11,7 +11,7 @@ const { button } = html;
 render(
   () =>
     button(
-      { onclick: () => counter.set(counter() + 1) },
+      { onclick: () => { counter.set(counter() + 1); } },
       `Counter: ${counter()}, Double: ${double()}`,
     ),
   "#app",

@@ -65,7 +65,7 @@ describe("reactive store", () => {
     const spy = mock((_?: any) => {});
     const testStore = store({ count: 0 });
 
-    effect(() => spy(testStore.computed()));
+    effect(() => { spy(testStore.computed()); });
 
     testStore.count.set(1);
     await tick();

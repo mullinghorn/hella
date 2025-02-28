@@ -8,7 +8,7 @@ const App = () =>
   div({ classes: { active: isActive() } }, [
     button({
       id: "toggle",
-      onclick: () => isActive.set(!isActive()),
+      onclick: () => { isActive.set(!isActive()); },
     }),
     p({ classes: { active: isActive() } }, `Active: ${isActive()}`),
   ]);

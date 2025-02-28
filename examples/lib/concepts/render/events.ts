@@ -4,7 +4,7 @@ render(
   {
     tag: "button",
     classes: "btn",
-    onclick: () => console.log("clicked"),
+    onclick: () => { console.log("clicked"); },
     data: {
       id: "submit-btn",
       testid: "submit",

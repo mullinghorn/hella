@@ -10,7 +10,7 @@ const appStore = store<AppStore>(
   (state) => ({
     readProp: 0,
     mutableProp: 0,
-    setReadProp: (value: number) => state.readProp.set(value),
+    setReadProp: (value: number) => { state.readProp.set(value); },
   }),
   { readonly: ["readProp"] }, // Set true for all properties
 );

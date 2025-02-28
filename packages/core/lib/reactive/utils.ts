@@ -62,7 +62,7 @@ export function toError(error: any): Error {
 
 export function createTimeout(ms: number): Promise<never> {
   return new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Request timeout")), ms),
+    setTimeout(() => { reject(new Error("Request timeout")); }, ms),
   );
 }
 

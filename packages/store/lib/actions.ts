@@ -18,7 +18,7 @@ export function updateStore<T extends Record<string, any>>({
 
 export function destroyStore<T>(storeBase: StoreBase<T>): void {
   storeBase.isDisposed = true;
-  storeBase.signals.forEach((signal) => signal.dispose?.());
+  storeBase.signals.forEach((signal) => { signal.dispose(); });
   storeBase.effects.clear();
   storeBase.signals.clear();
   storeBase.methods.clear();

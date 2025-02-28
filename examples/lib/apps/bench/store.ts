@@ -63,9 +63,9 @@ export const benchStore = store<BenchStore>(
     return {
       data: [],
       selected: 0,
-      oneK: () => build(1000),
-      tenK: () => build(10000),
-      add: () => state.data.set([...state.data(), ...buildData(1000)]),
+      oneK: () => { build(1000); },
+      tenK: () => { build(10000); },
+      add: () => { state.data.set([...state.data(), ...buildData(1000)]); },
       update,
       swap,
       clear,

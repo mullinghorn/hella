@@ -36,7 +36,7 @@ export function router() {
 
     return {
       ...initialState,
-      start: (routes: Routes) => initRouter({ context, routes }),
+      start: (routes: Routes) => { initRouter({ context, routes }); },
       navigate: (path: string) =>
         navigationPipeline({
           context,
@@ -187,6 +187,6 @@ function initRouter({ context, routes }: RouterInitArgs): void {
   context.state.currentPath.set(path);
   urlManager({ context, path });
   routePipeline({ context, path }).then(() =>
-    emit({ context, event: "afterNavigate", path }),
+    { emit({ context, event: "afterNavigate", path }); },
   );
 }

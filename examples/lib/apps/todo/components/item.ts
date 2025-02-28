@@ -23,12 +23,12 @@ export const TodoItem = (props: TodoItemProps) => {
       input({
         type: "checkbox",
         checked: completed,
-        onclick: () => toggleTodo(id),
+        onclick: () => { toggleTodo(id); },
       }),
       span([
         text,
         `Added: ${addedAt.toLocaleDateString()}`,
-        completedAt && ` Completed: ${completedAt?.toLocaleDateString()}`,
+        completedAt && ` Completed: ${completedAt.toLocaleDateString()}`,
       ]),
     ],
   );

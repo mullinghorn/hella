@@ -70,11 +70,11 @@ function processClass(value: any): string {
   }
 
   if (isObject(value)) {
-    const classes = Object.entries(value).reduce(
+    const classes = Object.entries(value).reduce<string[]>(
       (classes, [className, active]) => {
         return active ? [...classes, className] : classes;
       },
-      [] as string[],
+      [],
     );
     return classes.length ? classes.join(" ") : "";
   }

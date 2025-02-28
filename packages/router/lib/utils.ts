@@ -78,7 +78,7 @@ function createWildcardMatch(pattern: string, path: string): RoutePatternMatch {
 
   return {
     pattern: paramPattern,
-    matches: path.match(new RegExp(`^${paramPattern}`)),
+    matches: new RegExp(`^${paramPattern}`).exec(path),
   };
 }
 
@@ -87,7 +87,7 @@ function createStaticMatch(pattern: string, path: string): RoutePatternMatch {
   const regexPattern = pattern.replace(/:[^/]+/g, "([^/]+)");
   return {
     pattern: regexPattern,
-    matches: path.match(new RegExp(`^${regexPattern}$`)),
+    matches: new RegExp(`^${regexPattern}$`).exec(path),
   };
 }
 
@@ -112,11 +112,11 @@ function extractParamsFromMatches(
   paramNames: string[],
   matches: RegExpMatchArray,
 ): RouteParams {
-  return paramNames.reduce((params, param, index) => {
+  return paramNames.reduce<RouteParams>((params, param, index) => {
     const value = matches[index + 1];
     params[param] = validateRouteParam(value) ? value : "";
     return params;
-  }, {} as RouteParams);
+  }, {});
 }
 
 // Pattern for route matching

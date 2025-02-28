@@ -28,14 +28,14 @@ export const BenchApp = () =>
               },
               classes: { selected: item.selected },
               style: item.selected ? "color: red" : "",
-              onclick: () => benchStore.select(item.id),
+              onclick: () => { benchStore.select(item.id); },
             },
             item.label,
           ),
           td([
             span(
               {
-                onclick: () => benchStore.remove(item.id),
+                onclick: () => { benchStore.remove(item.id); },
               },
               "X",
             ),

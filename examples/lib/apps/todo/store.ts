@@ -25,7 +25,7 @@ const todosResource = resource<{ todos: Todo[] }>("/todos.json", {
       completedAt: todo.completedAt ? new Date(todo.completedAt) : undefined,
     })),
   }),
-  onError: (response) => console.log(response),
+  onError: (response) => { console.log(response); },
 });
 
 export const todoStore = store<TodoStore>(() => ({

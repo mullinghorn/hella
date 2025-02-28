@@ -22,16 +22,16 @@ export function storeSignal<T, V>({
         ? target[prop as keyof Signal<V>]
         : (...args: [V]) => {
             if (storeBase.isDisposed) {
-              return console.warn(
+              console.warn(
                 `Attempting to update a disposed store signal: ${String(key)}`,
-              );
+              ); return;
             }
             const isReadonlyExternal = isReadonlyKey && !storeBase.isInternal;
             if (isReadonlyExternal) {
               readonlyStoreProp(key);
             }
             target.set(args[0]);
-            storeData?.store?.forEach((cb) => cb(key, args[0]));
+            storeData?.store.forEach((cb) => { cb(key, args[0]); });
           },
   });
 }

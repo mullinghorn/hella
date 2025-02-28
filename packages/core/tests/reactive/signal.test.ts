@@ -66,7 +66,7 @@ describe("reactive signals", () => {
       "Maximum subscriber limit (1000) exceeded",
     );
 
-    subs.forEach((unsub) => unsub());
+    subs.forEach((unsub) => { unsub(); });
   });
 
   test("disposal", () => {
@@ -78,11 +78,11 @@ describe("reactive signals", () => {
     count.set(2);
     expect(spy).toHaveBeenCalledTimes(1);
 
-    expect(() => unsub()).not.toThrow();
+    expect(() => { unsub(); }).not.toThrow();
   });
 
   test("batched", async () => {
-    effect(() => spy(count()));
+    effect(() => { spy(count()); });
 
     batchSignals(() => {
       count.set(1);

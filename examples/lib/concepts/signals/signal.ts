@@ -1,11 +1,11 @@
 import { signal } from "@hella/core";
 
 const counter = signal(0, {
-  onRead: (value) => console.log(`Counter signal read: ${value}`),
-  onWrite: (value) => console.log(`Counter signal write: ${value}`),
-  onDispose: () => console.log("Counter signal disposed"),
-  onSubscribe: () => console.log("Counter signal subscribed"),
-  onUnsubscribe: () => console.log("Counter signal unsubscribed"),
+  onRead: (value) => { console.log(`Counter signal read: ${value}`); },
+  onWrite: (value) => { console.log(`Counter signal write: ${value}`); },
+  onDispose: () => { console.log("Counter signal disposed"); },
+  onSubscribe: () => { console.log("Counter signal subscribed"); },
+  onUnsubscribe: () => { console.log("Counter signal unsubscribed"); },
 });
 
 const unsub = counter.subscribe(() => {

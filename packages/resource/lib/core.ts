@@ -54,11 +54,11 @@ export function resource<T>(
   return {
     ...state,
     fetch,
-    abort: () => controller.abort(),
+    abort: () => { controller.abort(); },
     refresh: () => {
       destroyCache(key);
       return fetch();
     },
-    invalidate: () => destroyCache(key),
+    invalidate: () => { destroyCache(key); },
   };
 }

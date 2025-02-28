@@ -8,11 +8,11 @@ let redirectCount = 0;
 
 // Validates a path
 export const validatePath = (path: string): boolean =>
-  Boolean(path.match(pathValidationRegex));
+  Boolean(pathValidationRegex.exec(path));
 
 // Validates a route parameter
 export const validateRouteParam = (param: string): boolean =>
-  Boolean(param.match(paramValidationRegex));
+  Boolean(paramValidationRegex.exec(param));
 
 // Validates a navigation rate
 export const validateNavigationRate = (): boolean => {

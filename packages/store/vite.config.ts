@@ -1,6 +1,6 @@
 // vite.config.ts
 import { defineConfig } from "vite";
-import { viteConfig } from "../../vite.config.base";
+import { viteConfig } from "../../vite.config";
 
 export default defineConfig(
   viteConfig({

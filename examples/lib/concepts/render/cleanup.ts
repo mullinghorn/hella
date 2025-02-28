@@ -11,7 +11,7 @@ const app = render(
       p(counter),
       button(
         {
-          onclick: () => counter.set(counter() + 1),
+          onclick: () => { counter.set(counter() + 1); },
         },
         "Increment",
       ),

@@ -72,11 +72,11 @@ function storeResult<T>(
   const getComputedState = () => {
     const state: Partial<StoreComputed<T>> = {};
     for (const [key, signal] of storeBase.signals.entries()) {
-      state[key as keyof T] = signal();
+      state[key] = signal();
     }
     for (const [key, method] of storeBase.methods.entries()) {
       if (key !== "effect") {
-        state[key as keyof T] = method();
+        state[key] = method();
       }
     }
     return state as StoreComputed<T>;
@@ -107,7 +107,7 @@ function storeResult<T>(
         update: updates,
       });
     },
-    cleanup: () => destroyStore(storeBase),
+    cleanup: () => { destroyStore(storeBase); },
     computed: () => computed(getComputedState)(),
   } as StoreSignals<T>;
 }

@@ -99,7 +99,7 @@ function processChild({
   const nodeType = {
     isReactive: isFunction(child),
     isFragment:
-      !isFunction(child) && (child as HellaElement)?.tag === undefined,
+      !isFunction(child) && (child as HellaElement).tag === undefined,
     isPrim: isPrimitive(child),
   };
 
@@ -226,12 +226,12 @@ function batchChildUpdates(
     Array.from({
       length: Math.max(currentNodes.length, newNodes.length),
     }).forEach((_, i) =>
-      updateNode({
+      { updateNode({
         parent: batch,
         current: currentNodes[i],
         next: newNodes[i],
         rootSelector,
-      }),
+      }); },
     );
 
   batch.childNodes.length && parent.appendChild(batch);

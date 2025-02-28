@@ -35,7 +35,7 @@ export function batchSignals(fn: () => void): void {
   reactiveContext.batchingSignals = true;
   fn();
   reactiveContext.batchingSignals = false;
-  reactiveContext.pendingEffects.forEach((effect: () => void) => effect());
+  reactiveContext.pendingEffects.forEach((effect: () => void) => { effect(); });
   reactiveContext.pendingEffects.clear();
 }
 
@@ -102,7 +102,7 @@ function signalCore<T>(state: SignalState<T>): Signal<T> {
       state,
       value,
       subscribers,
-      notify: () => subscribers.notify(),
+      notify: () => { subscribers.notify(); },
     });
   }
 
@@ -162,7 +162,7 @@ function setSignal<T>({
 
   if (value.current === newVal) return;
 
-  if (state.config?.validate && state.config.validate(newVal) === false) {
+  if (state.config?.validate && !state.config.validate(newVal)) {
     throw toError(`Signal value validation failed: ${newVal}`);
   }
 
@@ -176,7 +176,7 @@ function setSignal<T>({
  */
 function signalSubscribers<T>(state: SignalState<T>): SignalSubscribers {
   const subscribers = new Set<() => void>();
-  const notify = () => subscribers.forEach((sub) => sub());
+  const notify = () => { subscribers.forEach((sub) => { sub(); }); };
   const ops: SignalOptions<T> = {
     subscribers,
     notify,
@@ -185,9 +185,9 @@ function signalSubscribers<T>(state: SignalState<T>): SignalSubscribers {
 
   return {
     add: addSubscriber(ops),
-    remove: (fn) => removeSubscriber({ subscribers, state: state }, fn),
-    notify: () => notify(),
-    clear: () => subscribers.clear(),
+    remove: (fn) => { removeSubscriber({ subscribers, state: state }, fn); },
+    notify: () => { notify(); },
+    clear: () => { subscribers.clear(); },
     set: subscribers,
   };
 }
@@ -207,7 +207,7 @@ function addSubscriber<T>({ subscribers, state }: SignalOptions<T>) {
     trackSubscriber(state.signal!, subscribers.size);
     state.config?.onSubscribe?.(subscribers.size);
 
-    return () => removeSubscriber({ subscribers, state }, fn);
+    return () => { removeSubscriber({ subscribers, state }, fn); };
   };
 }
 

@@ -22,7 +22,7 @@ export function render(
   return isFunction(hellaElement)
     ? reactiveRender(hellaElement as () => HellaElement, rootSelector)
     : (renderElement(
-        hellaElement as HellaElement,
+        hellaElement,
         rootSelector,
       ) as unknown as CleanupFunction);
 }
@@ -36,7 +36,7 @@ function reactiveRender(
 ): CleanupFunction {
   if (!rootSelector) throw toError("No mount selector provided");
 
-  const dispose = effect(() => renderEffect(hellaElement, rootSelector));
+  const dispose = effect(() => { renderEffect(hellaElement, rootSelector); });
 
   return () => {
     removeDelegatedListeners(rootSelector);

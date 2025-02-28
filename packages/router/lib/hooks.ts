@@ -9,7 +9,7 @@ export function beforeNavigate(
     (paths.length === 0 || paths.some((pattern) => matchPath(pattern, path))) &&
     callback(path);
   router().on("beforeNavigate", handler);
-  return () => router().off("beforeNavigate", handler);
+  return () => { router().off("beforeNavigate", handler); };
 }
 
 export function afterNavigate(
@@ -20,5 +20,5 @@ export function afterNavigate(
     (paths.length === 0 || paths.some((pattern) => matchPath(pattern, path))) &&
     callback(path);
   router().on("afterNavigate", handler);
-  return () => router().off("afterNavigate", handler);
+  return () => { router().off("afterNavigate", handler); };
 }
