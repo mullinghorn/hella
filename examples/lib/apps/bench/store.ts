@@ -1,4 +1,4 @@
-import { store } from "../../../../packages/store/lib";
+import { store } from "@hella/store";
 import { buildData } from "./data";
 
 interface BenchRow { id: number; label: string; selected: boolean }
