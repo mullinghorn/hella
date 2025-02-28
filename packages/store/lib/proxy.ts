@@ -2,7 +2,6 @@ import { signal, Signal } from "@hella/core";
 import { StoreBase, StoreSignals, StoreValidatedArgs } from "./types";
 import { undefinedStoreProp, readonlyStoreProp } from "./utils";
 import { storeContext } from "./global";
-
 export function storeSignal<T, V>({
   key,
   value,
@@ -21,18 +20,18 @@ export function storeSignal<T, V>({
       prop !== "set"
         ? target[prop as keyof Signal<V>]
         : (...args: [V]) => {
-            if (storeBase.isDisposed) {
-              console.warn(
-                `Attempting to update a disposed store signal: ${String(key)}`,
-              ); return;
-            }
-            const isReadonlyExternal = isReadonlyKey && !storeBase.isInternal;
-            if (isReadonlyExternal) {
-              readonlyStoreProp(key);
-            }
-            target.set(args[0]);
-            storeData?.store.forEach((cb) => { cb(key, args[0]); });
-          },
+          if (storeBase.isDisposed) {
+            return console.warn(
+              `Attempting to update a disposed store signal: ${String(key)}`,
+            );
+          }
+          const isReadonlyExternal = isReadonlyKey && !storeBase.isInternal;
+          if (isReadonlyExternal) {
+            readonlyStoreProp(key);
+          }
+          target.set(args[0]);
+          storeData?.store?.forEach((cb) => cb(key, args[0]));
+        },
   });
 }
 
@@ -43,8 +42,8 @@ export function storeProxy<T>(storeBase: StoreBase<T>): StoreSignals<T> {
       return key === "effect"
         ? storeBase.methods.get("effect" as keyof T)
         : (storeBase.signals.get(key) ??
-            storeBase.methods.get(key) ??
-            undefinedStoreProp(prop));
+          storeBase.methods.get(key) ??
+          undefinedStoreProp(prop));
     },
   });
 }

@@ -10,7 +10,7 @@ export interface StoreHella {
   >;
 }
 export interface StoreOptions {
-  readonly?: boolean | (string | number | symbol)[];
+  readonly?: boolean | Array<string | number | symbol>;
 }
 
 export type StoreMethods<T> = {
@@ -25,21 +25,21 @@ export type StoreEffectFn = (fn: () => void) => () => void;
 
 export type StoreComputed<T> = {
   [K in keyof T]: T[K] extends (...args: any[]) => any
-    ? ReturnType<T[K]>
-    : T[K];
+  ? ReturnType<T[K]>
+  : T[K];
 };
 
 export type StoreSignals<T> = {
   [K in keyof StoreState<T>]: Signal<StoreState<T>[K]>;
 } & StoreMethods<T> & {
-    set(
-      update:
-        | Partial<StoreState<T>>
-        | ((storeSignals: StoreSignals<T>) => Partial<StoreState<T>>),
-    ): void;
-    cleanup(): void;
-    computed(): StoreComputed<T>;
-  };
+  set(
+    update:
+      | Partial<StoreState<T>>
+      | ((storeSignals: StoreSignals<T>) => Partial<StoreState<T>>),
+  ): void;
+  cleanup(): void;
+  computed(): StoreComputed<T>;
+};
 
 export interface StoreBase<T> {
   signals: Map<keyof T, Signal<any>>;
@@ -54,8 +54,8 @@ export type StoreEffect = (key: string | number | symbol, value: any) => void;
 export interface StoreUpdateArgs<T> {
   signals: Map<keyof T, Signal<any>>;
   update:
-    | Partial<StoreState<T>>
-    | ((store: StoreSignals<T>) => Partial<StoreState<T>>);
+  | Partial<StoreState<T>>
+  | ((store: StoreSignals<T>) => Partial<StoreState<T>>);
 }
 
 export interface StoreWithFnArgs<T> {

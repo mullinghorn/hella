@@ -2,8 +2,8 @@ import { describe, test, expect } from "bun:test";
 import { store } from "../lib";
 
 describe("store actions", () => {
-  test("methods", async () => {
-    const testStore = store((state) => ({
+  test("methods", () => {
+    const testStore = store<{ count: number, increment: () => void }>((state) => ({
       count: 0,
       increment() {
         state.count.set(state.count() + 1);

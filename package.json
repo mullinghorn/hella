@@ -12,8 +12,7 @@
     "router": "lerna run build --scope @hella/router",
     "resource": "lerna run build --scope @hella/resource",
     "examples": "lerna run dev --scope @hella/examples",
-    "prettier": "prettier . --write",
-    "build": "lerna run build",
+    "all": "lerna run build",
     "lint": "eslint --fix"
   },
   "devDependencies": {

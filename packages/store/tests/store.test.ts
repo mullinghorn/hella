@@ -1,5 +1,5 @@
 import { describe, test, expect, mock } from "bun:test";
-import { store } from "../lib";
+import { store, StoreComputed } from "../lib";
 import { tick } from "@hella/core";
 import { computed, effect, signal } from "@hella/core";
 
@@ -62,7 +62,7 @@ describe("reactive store", () => {
   });
 
   test("effects", async () => {
-    const spy = mock((_?: any) => {});
+    const spy = mock((_?: StoreComputed<{ count: number; }>) => _);
     const testStore = store({ count: 0 });
 
     effect(() => { spy(testStore.computed()); });

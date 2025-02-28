@@ -40,18 +40,18 @@ export function store<T extends Record<string, any>>(
   for (const [key, value] of storeEntries) {
     isFunction(value)
       ? storeBase.methods.set(key, (...args: any[]) =>
-          storeWithFn({ storeBase, fn: () => value(...args) }),
-        )
+        storeWithFn({ storeBase, fn: () => value(...args) }),
+      )
       : storeBase.signals.set(
+        key,
+        storeSignal({
           key,
-          storeSignal({
-            key,
-            value,
-            storeBase,
-            storeProxy,
-            options,
-          }),
-        );
+          value,
+          storeBase,
+          storeProxy,
+          options,
+        }),
+      );
   }
 
   const storeInstance = storeResult(storeBase, options);
@@ -72,11 +72,11 @@ function storeResult<T>(
   const getComputedState = () => {
     const state: Partial<StoreComputed<T>> = {};
     for (const [key, signal] of storeBase.signals.entries()) {
-      state[key] = signal();
+      state[key as keyof T] = signal();
     }
     for (const [key, method] of storeBase.methods.entries()) {
       if (key !== "effect") {
-        state[key] = method();
+        state[key as keyof T] = method();
       }
     }
     return state as StoreComputed<T>;
@@ -91,8 +91,8 @@ function storeResult<T>(
       }
       const updates = isFunction(update)
         ? update(
-            Object.fromEntries(storeBase.signals) as unknown as StoreSignals<T>,
-          )
+          Object.fromEntries(storeBase.signals) as unknown as StoreSignals<T>,
+        )
         : update;
       const hasReadonlyViolation = Object.keys(updates).some((key) =>
         Array.isArray(options.readonly)
@@ -107,7 +107,7 @@ function storeResult<T>(
         update: updates,
       });
     },
-    cleanup: () => { destroyStore(storeBase); },
+    cleanup: () => destroyStore(storeBase),
     computed: () => computed(getComputedState)(),
   } as StoreSignals<T>;
 }

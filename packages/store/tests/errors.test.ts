@@ -8,7 +8,7 @@ describe("store errors", () => {
     });
 
     expect(() => {
-      // @ts-ignore - Testing runtime error
+      // @ts-expect-error - Testing runtime error
       testStore.undefined();
     }).toThrow();
   });

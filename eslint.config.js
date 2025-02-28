@@ -3,6 +3,12 @@ import stylistic from '@stylistic/eslint-plugin';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
+  {
+    // Add ignores at the top level, outside nested configs
+    ignores: [
+      "**/dist/**/*",
+    ]
+  },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
@@ -12,7 +18,7 @@ export default tseslint.config(
     },
     languageOptions: {
       parserOptions: {
-        project: true
+        project: ['./tsconfig.json', './packages/*/tsconfig.json'],
       }
     },
     // ESLint

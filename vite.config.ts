@@ -1,7 +1,11 @@
 import { UserConfig } from "vite";
 import dts from "vite-plugin-dts";
 
-export const viteConfig = ({ name }: any) =>
+interface ViteConfigOptions {
+  name: string;
+}
+
+export const viteConfig = ({ name }: ViteConfigOptions) =>
   ({
     plugins: [
       dts({
