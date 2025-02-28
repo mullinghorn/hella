@@ -14,7 +14,7 @@ export interface StoreOptions {
 }
 
 export type StoreMethods<T> = {
-  [K in keyof T as T[K] extends Function ? K : never]: T[K];
+  [K in keyof T as T[K] extends unknown ? K : never]: T[K];
 };
 
 export type StoreState<T> = {

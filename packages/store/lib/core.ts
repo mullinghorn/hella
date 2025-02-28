@@ -12,7 +12,7 @@ import { destroyStore, updateStore } from "./actions";
 import { storeWithFn } from "./utils";
 import { storeContext } from "./global";
 
-export function store<T extends Record<string, unknown>>(
+export function store<T>(
   factory: StoreFactory<T>,
   options: StoreOptions = {},
 ): StoreSignals<T> {
@@ -31,19 +31,21 @@ export function store<T extends Record<string, unknown>>(
   };
 
   const proxyStore = storeProxy(storeBase);
-  storeBase.methods.set("effect", storeEffect as UnknownFn);
+  storeBase.methods.set("effect" as keyof T, storeEffect as UnknownFn);
 
   const storeEntries = Object.entries(
-    isFunction(factory) ? factory(proxyStore) : factory,
+    isFunction(factory) ? factory(proxyStore) as object : factory as object,
   );
   storeBase.isInternal = false;
 
-  for (const [key, value] of storeEntries) {
+  for (const [tKey, tvalue] of storeEntries) {
+    const key = tKey as keyof T;
+    const value = tvalue as UnknownFn;
     if (isFunction(value)) {
       const methodWrapper = (...args: unknown[]) => {
         const result = storeWithFn({
           storeBase,
-          fn: () => value(...args)
+          fn: () => value(...args),
         });
         return result;
       };
@@ -51,7 +53,7 @@ export function store<T extends Record<string, unknown>>(
     } else {
       storeBase.signals.set(
         key,
-        storeSignal({
+        storeSignal<T, unknown>({
           key,
           value,
           storeBase,

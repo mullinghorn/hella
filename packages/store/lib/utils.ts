@@ -1,7 +1,7 @@
 import { toError } from "@hella/core";
 import { StoreWithFnArgs } from "./types";
 
-export function storeWithFn<T extends Record<string, unknown>>({
+export function storeWithFn<T>({
   storeBase,
   fn,
 }: StoreWithFnArgs<T>): unknown {
