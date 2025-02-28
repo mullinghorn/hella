@@ -26,7 +26,9 @@ export default tseslint.config(
   },
   // TypeScript
   {
-    rules: {}
+    rules: {
+      "@typescript-eslint/no-invalid-void-type": "off",
+    }
   },
   // Stylistic
   {
