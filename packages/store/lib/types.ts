@@ -1,4 +1,4 @@
-import { Signal } from "@hella/core";
+import { Signal, UnknownFn } from "@hella/core";
 
 export interface StoreHella {
   stores: WeakMap<
@@ -10,7 +10,7 @@ export interface StoreHella {
   >;
 }
 export interface StoreOptions {
-  readonly?: boolean | Array<string | number | symbol>;
+  readonly?: boolean | (string | number | symbol)[];
 }
 
 export type StoreMethods<T> = {
@@ -18,13 +18,13 @@ export type StoreMethods<T> = {
 };
 
 export type StoreState<T> = {
-  [K in keyof T as T[K] extends Function ? never : K]: T[K];
+  [K in keyof T as T[K] extends UnknownFn ? never : K]: T[K];
 };
 
 export type StoreEffectFn = (fn: () => void) => () => void;
 
 export type StoreComputed<T> = {
-  [K in keyof T]: T[K] extends (...args: any[]) => any
+  [K in keyof T]: T[K] extends UnknownFn
   ? ReturnType<T[K]>
   : T[K];
 };
@@ -42,17 +42,17 @@ export type StoreSignals<T> = {
 };
 
 export interface StoreBase<T> {
-  signals: Map<keyof T, Signal<any>>;
-  methods: Map<keyof T, Function>;
+  signals: Map<keyof T, Signal<unknown>>;
+  methods: Map<keyof T, UnknownFn>;
   effects: Set<() => void>;
   isDisposed: boolean;
   isInternal: boolean;
 }
 
-export type StoreEffect = (key: string | number | symbol, value: any) => void;
+export type StoreEffect = (key: string | number | symbol, value: unknown) => void;
 
 export interface StoreUpdateArgs<T> {
-  signals: Map<keyof T, Signal<any>>;
+  signals: Map<keyof T, Signal<unknown>>;
   update:
   | Partial<StoreState<T>>
   | ((store: StoreSignals<T>) => Partial<StoreState<T>>);
@@ -60,7 +60,7 @@ export interface StoreUpdateArgs<T> {
 
 export interface StoreWithFnArgs<T> {
   storeBase: StoreBase<T>;
-  fn: Function;
+  fn: () => unknown;
 }
 
 export interface StoreValidatedArgs<T, V> {

@@ -1,4 +1,4 @@
-import { ctx } from "@hella/core";
+import { ctx } from "../context";
 import { ComponentRegistry } from "./types";
 
 const HELLA_COMPONENTS: ComponentRegistry = new Map();

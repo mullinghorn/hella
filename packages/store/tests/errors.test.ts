@@ -9,6 +9,7 @@ describe("store errors", () => {
 
     expect(() => {
       // @ts-expect-error - Testing runtime error
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       testStore.undefined();
     }).toThrow();
   });

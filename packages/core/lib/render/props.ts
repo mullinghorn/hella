@@ -1,4 +1,4 @@
-import { isFalsy, isFunction, isObject, toError } from "@hella/core";
+import { isFalsy, isFunction, isObject, toError } from "../";
 import { HellaElement, PropHandler, PropValue } from "./types";
 import { attachEvent } from "./events";
 import { sanitizeValue, sanitizeUrl, shouldSanitizeProp } from "./sanitize";

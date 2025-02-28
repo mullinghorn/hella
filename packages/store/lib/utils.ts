@@ -1,10 +1,10 @@
 import { toError } from "@hella/core";
 import { StoreWithFnArgs } from "./types";
 
-export function storeWithFn<T extends Record<string, any>>({
+export function storeWithFn<T extends Record<string, unknown>>({
   storeBase,
   fn,
-}: StoreWithFnArgs<T>): any {
+}: StoreWithFnArgs<T>): unknown {
   storeBase.isInternal = true;
   const result = fn();
   storeBase.isInternal = false;

@@ -1,4 +1,4 @@
-import { isRecord, isFunction, isPrimitive } from "@hella/core";
+import { isRecord, isFunction, isPrimitive } from "../";
 import {
   ElementFunction,
   HellaElement,

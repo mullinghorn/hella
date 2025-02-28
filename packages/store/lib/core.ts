@@ -6,13 +6,13 @@ import {
   StoreOptions,
   StoreComputed,
 } from "./types";
-import { isFunction, toError, effect, computed, Signal } from "@hella/core";
+import { isFunction, toError, effect, computed, Signal, UnknownFn } from "@hella/core";
 import { storeProxy, storeSignal } from "./proxy";
 import { destroyStore, updateStore } from "./actions";
 import { storeWithFn } from "./utils";
 import { storeContext } from "./global";
 
-export function store<T extends Record<string, any>>(
+export function store<T extends Record<string, unknown>>(
   factory: StoreFactory<T>,
   options: StoreOptions = {},
 ): StoreSignals<T> {
@@ -31,18 +31,25 @@ export function store<T extends Record<string, any>>(
   };
 
   const proxyStore = storeProxy(storeBase);
-  storeBase.methods.set("effect", storeEffect);
+  storeBase.methods.set("effect", storeEffect as UnknownFn);
 
   const storeEntries = Object.entries(
     isFunction(factory) ? factory(proxyStore) : factory,
   );
   storeBase.isInternal = false;
+
   for (const [key, value] of storeEntries) {
-    isFunction(value)
-      ? storeBase.methods.set(key, (...args: any[]) =>
-        storeWithFn({ storeBase, fn: () => value(...args) }),
-      )
-      : storeBase.signals.set(
+    if (isFunction(value)) {
+      const methodWrapper = (...args: unknown[]) => {
+        const result = storeWithFn({
+          storeBase,
+          fn: () => value(...args)
+        });
+        return result;
+      };
+      storeBase.methods.set(key, methodWrapper);
+    } else {
+      storeBase.signals.set(
         key,
         storeSignal({
           key,
@@ -52,6 +59,7 @@ export function store<T extends Record<string, any>>(
           options,
         }),
       );
+    }
   }
 
   const storeInstance = storeResult(storeBase, options);
@@ -72,11 +80,11 @@ function storeResult<T>(
   const getComputedState = () => {
     const state: Partial<StoreComputed<T>> = {};
     for (const [key, signal] of storeBase.signals.entries()) {
-      state[key as keyof T] = signal();
+      state[key] = signal() as StoreComputed<T>[keyof T];
     }
     for (const [key, method] of storeBase.methods.entries()) {
       if (key !== "effect") {
-        state[key as keyof T] = method();
+        state[key] = method() as StoreComputed<T>[keyof T];
       }
     }
     return state as StoreComputed<T>;
@@ -90,9 +98,7 @@ function storeResult<T>(
         throw toError("Attempting to update a disposed store");
       }
       const updates = isFunction(update)
-        ? update(
-          Object.fromEntries(storeBase.signals) as unknown as StoreSignals<T>,
-        )
+        ? update(Object.fromEntries(storeBase.signals) as StoreSignals<T>)
         : update;
       const hasReadonlyViolation = Object.keys(updates).some((key) =>
         Array.isArray(options.readonly)
@@ -103,11 +109,13 @@ function storeResult<T>(
         throw toError("Cannot modify readonly store properties");
       }
       updateStore({
-        signals: storeBase.signals as Map<string, Signal<any>>,
+        signals: storeBase.signals as Map<string, Signal<unknown>>,
         update: updates,
       });
     },
-    cleanup: () => destroyStore(storeBase),
+    cleanup: () => {
+      destroyStore(storeBase);
+    },
     computed: () => computed(getComputedState)(),
   } as StoreSignals<T>;
 }

@@ -1,4 +1,4 @@
-import { toError } from "@hella/core";
+import { toError } from "../";
 
 export function getRootElement(rootSelector: string): Element {
   const rootElement = document.querySelector(rootSelector);

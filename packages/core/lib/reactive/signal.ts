@@ -1,4 +1,4 @@
-import { isFalse, isFunction, isUndefined, toError } from "./utils";
+import { isFalse, isFunction, isUndefined, toError } from "../utils";
 import {
   maxSubscribersExceeded,
   maxSubscribersLimit,
@@ -76,7 +76,7 @@ function signalProxy<T>(state: SignalState<T>): Signal<T> {
     },
   };
 
-  return new Proxy(() => {}, handler) as Signal<T>;
+  return new Proxy(() => { }, handler) as Signal<T>;
 }
 
 /**
@@ -109,7 +109,7 @@ function signalCore<T>(state: SignalState<T>): Signal<T> {
   Object.assign(read, {
     set,
     subscribe: (fn: () => void) => {
-      if (state.disposed) return () => {};
+      if (state.disposed) return () => { };
       return subscribers.add(fn);
     },
     dispose: () => {

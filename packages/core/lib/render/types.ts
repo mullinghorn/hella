@@ -1,4 +1,4 @@
-import { DynamicValue, Signal } from "@hella/core";
+import { DynamicValue, Signal } from "../";
 
 export type HTMLTagName = keyof HTMLElementTagNameMap;
 
@@ -74,15 +74,15 @@ export type ClassValue =
 
 export type HellaElement<T extends HTMLTagName = HTMLTagName> =
   EventHandlerProps &
-    HTMLElementProps<T> & {
-      tag: T;
-      root?: string;
-      classes?: ClassValue | (() => ClassValue);
-      data?: Record<string, DynamicValue<string | number | boolean>>;
-      content?: HNodeChildren;
-      onRender?: (element: HTMLElement) => void | (() => void);
-      onPreRender?: () => void;
-    };
+  HTMLElementProps<T> & {
+    tag: T;
+    root?: string;
+    classes?: ClassValue | (() => ClassValue);
+    data?: Record<string, DynamicValue<string | number | boolean>>;
+    content?: HNodeChildren;
+    onRender?: (element: HTMLElement) => void | (() => void);
+    onPreRender?: () => void;
+  };
 
 // Element Factory Types
 export interface ElementFunction<T extends HTMLTagName> {
@@ -103,8 +103,8 @@ export type ElementProps<T extends HTMLTagName> = Partial<
 // HTML Element Props with Style Handling
 export type HTMLElementProps<T extends HTMLTagName> = {
   [K in keyof HTMLElementTagNameMap[T]]?: K extends "style"
-    ? StylePropType
-    : HTMLElementTagNameMap[T][K] | (() => HTMLElementTagNameMap[T][K]);
+  ? StylePropType
+  : HTMLElementTagNameMap[T][K] | (() => HTMLElementTagNameMap[T][K]);
 };
 
 type StylePropType =

@@ -1,4 +1,4 @@
-import { store } from "@hella/store";
+import { store } from "../../../../packages/store/lib";
 import { buildData } from "./data";
 
 interface BenchRow { id: number; label: string; selected: boolean }
@@ -53,9 +53,9 @@ export const benchStore = store<BenchStore>(
           item.id !== id
             ? item
             : {
-                ...item,
-                selected: !item.selected,
-              },
+              ...item,
+              selected: !item.selected,
+            },
         ),
       ]);
     };

@@ -1,9 +1,9 @@
-import { isString, isFunction } from "@hella/core";
+import { isString, isFunction } from "../";
 import { validateEventHandler } from "./validation";
 
 export const sanitizeValue = (value: any): string => {
   if (isFunction(value)) {
-    return validateEventHandler(value) ? value : () => {};
+    return validateEventHandler(value) ? value : () => { };
   }
   return isString(value) ? value.replace(/[^\w\s-:./]/gi, "") : String(value);
 };

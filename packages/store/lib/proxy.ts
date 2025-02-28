@@ -21,16 +21,18 @@ export function storeSignal<T, V>({
         ? target[prop as keyof Signal<V>]
         : (...args: [V]) => {
           if (storeBase.isDisposed) {
-            return console.warn(
+            console.warn(
               `Attempting to update a disposed store signal: ${String(key)}`,
             );
+
+            return
           }
           const isReadonlyExternal = isReadonlyKey && !storeBase.isInternal;
           if (isReadonlyExternal) {
             readonlyStoreProp(key);
           }
           target.set(args[0]);
-          storeData?.store?.forEach((cb) => cb(key, args[0]));
+          storeData?.store.forEach((cb) => { cb(key, args[0]) });
         },
   });
 }
@@ -39,11 +41,19 @@ export function storeProxy<T>(storeBase: StoreBase<T>): StoreSignals<T> {
   return new Proxy({} as StoreSignals<T>, {
     get: (_target, prop: string | symbol) => {
       const key = prop as keyof T;
-      return key === "effect"
-        ? storeBase.methods.get("effect" as keyof T)
-        : (storeBase.signals.get(key) ??
-          storeBase.methods.get(key) ??
-          undefinedStoreProp(prop));
+      let result;
+
+      if (key === "effect") {
+        result = storeBase.methods.get("effect" as keyof T);
+      } else {
+        result = storeBase.signals.get(key) ?? storeBase.methods.get(key);
+        if (result === undefined) {
+          undefinedStoreProp(prop);
+          return;
+        }
+      }
+
+      return result;
     },
   });
 }

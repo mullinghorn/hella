@@ -1,7 +1,7 @@
 import { isFunction, batchSignals } from "@hella/core";
 import { StoreBase, StoreSignals, StoreUpdateArgs } from "./types";
 
-export function updateStore<T extends Record<string, any>>({
+export function updateStore<T extends Record<string, unknown>>({
   signals,
   update,
 }: StoreUpdateArgs<T>) {

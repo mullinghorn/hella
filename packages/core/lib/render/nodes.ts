@@ -8,7 +8,7 @@ import {
   HNodeChild,
 } from "./types";
 import { render } from "./core";
-import { isFalsy, isFunction, isPrimitive, isRecord } from "@hella/core";
+import { isFalsy, isFunction, isPrimitive, isRecord } from "../";
 import { replaceEvents } from "./events";
 
 const FRAGMENT = document.createDocumentFragment();
@@ -225,13 +225,14 @@ function batchChildUpdates(
   Math.max(currentNodes.length, newNodes.length) &&
     Array.from({
       length: Math.max(currentNodes.length, newNodes.length),
-    }).forEach((_, i) =>
-      { updateNode({
+    }).forEach((_, i) => {
+      updateNode({
         parent: batch,
         current: currentNodes[i],
         next: newNodes[i],
         rootSelector,
-      }); },
+      });
+    },
     );
 
   batch.childNodes.length && parent.appendChild(batch);

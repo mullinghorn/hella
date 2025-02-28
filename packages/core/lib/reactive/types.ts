@@ -1,9 +1,3 @@
-export type DynamicValue<T> = T | (() => T);
-
-export type GenericPromise<T> = () => Promise<T>;
-
-export type CleanupFunction = () => void;
-
 export interface ReactiveState {
   activeEffects: (() => void)[];
   pendingEffects: Set<() => void>;

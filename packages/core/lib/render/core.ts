@@ -1,5 +1,5 @@
 import { HellaElement } from "./types";
-import { CleanupFunction, isFunction, toError, effect } from "@hella/core";
+import { CleanupFunction, isFunction, toError, effect } from "../";
 import { applyProps } from "./props";
 import { processChildren, diffNodes } from "./nodes";
 import { getRootElement } from "./utils";
@@ -22,9 +22,9 @@ export function render(
   return isFunction(hellaElement)
     ? reactiveRender(hellaElement as () => HellaElement, rootSelector)
     : (renderElement(
-        hellaElement,
-        rootSelector,
-      ) as unknown as CleanupFunction);
+      hellaElement,
+      rootSelector,
+    ) as unknown as CleanupFunction);
 }
 
 /**

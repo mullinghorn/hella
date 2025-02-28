@@ -26,7 +26,9 @@ export const validateNavigationRate = (): boolean => {
 export const validateRedirectCount = (): boolean => {
   redirectCount++;
   const isValid = redirectCount <= maxRedirects;
-  !isValid && (redirectCount = 0);
+  if (isValid) {
+    redirectCount = 0
+  }
   return isValid;
 };
 

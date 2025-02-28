@@ -1,4 +1,4 @@
-import { html, render } from "@hella/core";
+import { html, render } from "../../../../packages/core/lib";
 import { benchStore } from "./store";
 
 const { div, button, table, tr, td, h1, span } = html;
