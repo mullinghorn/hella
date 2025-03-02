@@ -1,0 +1,14 @@
+{
+  "name": "@hella/examples",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "tsc && vite build && vite preview"
+  },
+  "dependencies": {
+    "@hella/core": "*",
+    "@hella/store": "*",
+    "@hella/resource": "*",
+    "@hella/router": "*"
+  }
+}

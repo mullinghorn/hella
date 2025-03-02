@@ -1,0 +1,29 @@
+{
+  "name": "@hella/resource",
+  "description": "resource management",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "release": "release-it"
+  },
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
+  "peerDependencies": {
+    "@hella/core": "^0.0.1"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
