@@ -3,6 +3,15 @@
   "description": "A lightweight JavaScript framework for building reactive interfaces",
   "version": "0.0.3",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omilli/hella.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/omilli/hella/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/omilli/hella/issues"
+  },
   "publishConfig": {
     "access": "public"
   },
