@@ -2,8 +2,6 @@
 
 A lightweight JavaScript framework for building reactive interfaces.
 
-⚠️ Still a work in progress. Not yet installable via npm/etc...
-
 ## Table of Contents
 
 - [Features](#features)

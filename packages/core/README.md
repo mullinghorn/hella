@@ -1,6 +1,6 @@
 # Hella
 
-A lightweight JavaScript framework for building reactive interfaces.
+A lightweight JavaScript library for building reactive interfaces.
 
 ## Table of Contents
 

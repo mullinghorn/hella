@@ -8,7 +8,7 @@
     "url": "git+https://github.com/omilli/hella.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/omilli/hella/tree/main/packages/core#readme",
+  "homepage": "https://github.com/omilli/hella/blob/master/packages/core/README.md",
   "bugs": {
     "url": "https://github.com/omilli/hella/issues"
   },
