@@ -22,7 +22,7 @@
     }
   },
   "peerDependencies": {
-    "@hellajs/core": "^0.0.1"
+    "@hellajs/core": "^0.0.2"
   },
   "files": [
     "dist",
