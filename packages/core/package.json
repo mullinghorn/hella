@@ -1,8 +1,11 @@
 {
   "name": "@hellajs/core",
   "description": "signal based reactivity",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "release": "release-it"
