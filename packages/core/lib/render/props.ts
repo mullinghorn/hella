@@ -50,7 +50,7 @@ function updateProp(element: HTMLElement, key: string, value: PropValue): void {
     : sanitizeValue(value);
 
   sanitized
-    ? element.setAttribute(key, sanitized)
+    ? element.setAttribute(key, sanitized as string)
     : element.removeAttribute(key);
 }
 
@@ -118,7 +118,7 @@ function dataProp(element: HTMLElement, _: string, value: PropValue): void {
   Object.entries(value).forEach(([key, val]) => {
     const sanitized = sanitizeValue(val);
     sanitized
-      ? element.setAttribute(`data-${key}`, sanitized)
+      ? element.setAttribute(`data-${key}`, sanitized as string)
       : element.removeAttribute(`data-${key}`);
   });
 }

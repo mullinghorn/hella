@@ -10,7 +10,7 @@ export function updateStore<T extends Record<string, unknown>>({
     : update;
 
   batchSignals(() => {
-    for (const [key, value] of Object.entries(updates)) {
+    for (const [key, value] of Object.entries(updates as {})) {
       signals.get(key as keyof T)?.set(value);
     }
   });

@@ -34,7 +34,7 @@ export function store<T>(
   storeBase.methods.set("effect" as keyof T, storeEffect as UnknownFn);
 
   const storeEntries = Object.entries(
-    isFunction(factory) ? factory(proxyStore) as object : factory as object,
+    isFunction(factory) ? factory(proxyStore as StoreSignals<T>) as object : factory as object,
   );
   storeBase.isInternal = false;
 
@@ -45,7 +45,7 @@ export function store<T>(
       const methodWrapper = (...args: unknown[]) => {
         const result = storeWithFn({
           storeBase,
-          fn: () => value(...args),
+          fn: () => value(...args as []),
         });
         return result;
       };
@@ -102,7 +102,7 @@ function storeResult<T>(
       const updates = isFunction(update)
         ? update(Object.fromEntries(storeBase.signals) as StoreSignals<T>)
         : update;
-      const hasReadonlyViolation = Object.keys(updates).some((key) =>
+      const hasReadonlyViolation = Object.keys(updates as {}).some((key) =>
         Array.isArray(options.readonly)
           ? options.readonly.includes(key)
           : options.readonly,
@@ -112,7 +112,7 @@ function storeResult<T>(
       }
       updateStore({
         signals: storeBase.signals as Map<string, Signal<unknown>>,
-        update: updates,
+        update: updates as {},
       });
     },
     cleanup: () => {

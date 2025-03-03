@@ -1,7 +1,7 @@
 import { isString, isFunction } from "../";
 import { validateEventHandler } from "./validation";
 
-export const sanitizeValue = (value: any): string => {
+export const sanitizeValue = (value: unknown): unknown => {
   if (isFunction(value)) {
     return validateEventHandler(value) ? value : () => { };
   }

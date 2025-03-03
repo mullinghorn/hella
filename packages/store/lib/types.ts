@@ -60,7 +60,7 @@ export interface StoreUpdateArgs<T> {
 
 export interface StoreWithFnArgs<T> {
   storeBase: StoreBase<T>;
-  fn: () => unknown;
+  fn: (...args: unknown[]) => unknown;
 }
 
 export interface StoreValidatedArgs<T, V> {

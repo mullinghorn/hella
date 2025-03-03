@@ -35,7 +35,7 @@ export function isRecord(value: unknown): value is object {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
-export function isFunction(value: unknown): value is CallableFunction {
+export function isFunction(value: unknown): value is (...args: unknown[]) => unknown {
   return typeof value === "function";
 }
 
