@@ -3,6 +3,9 @@
   "description": "signal based state management",
   "version": "0.0.0",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "release": "release-it"

@@ -3,6 +3,9 @@
   "description": "simple router",
   "version": "0.0.0",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "release": "release-it"
