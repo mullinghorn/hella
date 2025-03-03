@@ -5,7 +5,10 @@
     "push": true
   },
   "npm": {
-    "publish": true
+    "publish": true,
+    "publishConfig": {
+      "access": "public"
+    }
   },
   "plugins": {
     "@release-it/conventional-changelog": {

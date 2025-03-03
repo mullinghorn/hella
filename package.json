@@ -17,7 +17,6 @@
     "resource:release": "lerna run release --scope @hellajs/resource",
     "examples": "lerna run dev --scope @hellajs/examples",
     "all": "lerna run build",
-    "all:release": "lerna run release",
     "lint": "eslint --fix"
   },
   "devDependencies": {
