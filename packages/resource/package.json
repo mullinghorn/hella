@@ -1,8 +1,17 @@
 {
   "name": "@hellajs/resource",
-  "description": "resource management",
+  "description": "A lightweight, type-safe JavaScript library for fetching, caching, and managing remote data with built-in reactivity.",
   "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omilli/hella.git",
+    "directory": "packages/resource"
+  },
+  "homepage": "https://github.com/omilli/hella/blob/master/packages/resource/README.md",
+  "bugs": {
+    "url": "https://github.com/omilli/hella/issues"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -22,7 +31,7 @@
     }
   },
   "peerDependencies": {
-    "@hellajs/core": "^0.0.5"
+    "@hellajs/core": "^0.1.0"
   },
   "files": [
     "dist",

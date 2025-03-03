@@ -1,6 +1,6 @@
-# Hella
+# @hellajs/core
 
-A lightweight JavaScript library for building reactive interfaces.
+A lightweight, type-safe JavaScript library for building reactive interfaces.
 
 ## Table of Contents
 
@@ -16,8 +16,9 @@ A lightweight JavaScript library for building reactive interfaces.
 - 🚀 **Fast DOM Updates** - Intelligent diffing with automatic batching
 - 🎯 **Granular Reactivity** - Signal-based state with automatic dependency tracking
 - 🔒 **Security First** - Built-in XSS protection and input sanitization
-- 📦 **Tiny Bundle** - Under 5kB gzipped
 - 🔍 **Type Safe** - Written in TypeScript with full type inference
+- 📦 **Tiny Bundle** - Under 5kB gzipped
+
 
 ## Getting Started
 
@@ -71,5 +72,6 @@ For detailed documentation, check out:
 
 Examples apps and core concepts:
 
-- [Concepts](https://github.com/omilli/hella/tree/master/examples/lib/concepts)
+- [Reactive](https://github.com/omilli/hella/tree/master/examples/lib/concepts/reactive)
+- [Render](https://github.com/omilli/hella/tree/master/examples/lib/concepts/render)
 - [Apps](https://github.com/omilli/hella/tree/master/examples/lib/apps)
