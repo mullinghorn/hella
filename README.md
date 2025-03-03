@@ -5,6 +5,7 @@ A lightweight JavaScript framework for building reactive interfaces.
 ## Table of Contents
 
 - [Features](#features)
+- [Packages](#packages)
 - [Core Concepts](#core-concepts)
   - [Reactive Components](#reactive-components)
   - [State Management](#state-management)
@@ -24,7 +25,13 @@ A lightweight JavaScript framework for building reactive interfaces.
 - 📦 **Tiny Bundle** - Full framework only under 8kB gzipped
 - 🔍 **Type Safe** - Written in TypeScript with full type inference
 
+### Packages
+
+Required: `npm i @hellajs/core`
+
 ## Core Concepts
+
+Optional: `npm i @hellajs/store @hellajs/resource @hellajs/router`
 
 ### Reactive Components
 
