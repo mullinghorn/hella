@@ -1,7 +1,7 @@
 {
   "name": "@hellajs/store",
   "description": "A lightweight, type-safe state management library for building reactive applications with automatic dependency tracking and batched updates.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "repository": {
     "type": "git",
