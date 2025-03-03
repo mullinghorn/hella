@@ -1,4 +1,4 @@
-import { render, html } from "@hella/core";
+import { render, html } from "@hellajs/core";
 
 const { $, div, h1, h2, p, span } = html;
 

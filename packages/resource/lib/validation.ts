@@ -1,4 +1,4 @@
-import { toError } from "@hella/core";
+import { toError } from "@hellajs/core";
 import { ResourceOptions } from "./types";
 import { resourceContext } from "./global";
 

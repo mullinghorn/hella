@@ -12,8 +12,8 @@ import {
 } from "./types";
 import { matchRoute } from "./utils";
 import { validatePath, validateNavigationRate } from "./validation";
-import { CleanupFunction, isString } from "@hella/core";
-import { store } from "@hella/store";
+import { CleanupFunction, isString } from "@hellajs/core";
+import { store } from "@hellajs/store";
 
 /** Router store factory */
 export function router() {

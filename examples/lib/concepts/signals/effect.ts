@@ -1,4 +1,4 @@
-import { computed, effect, signal } from "@hella/core";
+import { computed, effect, signal } from "@hellajs/core";
 
 const counter = signal(0);
 const double = computed(() => counter() * 2);

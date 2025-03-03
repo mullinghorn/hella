@@ -1,4 +1,4 @@
-import { Context, ctx } from "@hella/core";
+import { Context, ctx } from "@hellajs/core";
 import { StoreHella } from "./types";
 
 const HELLA_STORES: StoreHella = {

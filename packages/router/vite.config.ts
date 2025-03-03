@@ -4,6 +4,6 @@ import { viteConfig } from "../../vite.config";
 
 export default defineConfig(
   viteConfig({
-    name: "@hella/router",
+    name: "@hellajs/router",
   }),
 );

@@ -1,14 +1,14 @@
 {
-  "name": "@hella/examples",
+  "name": "@hellajs/examples",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "tsc && vite build && vite preview"
   },
   "dependencies": {
-    "@hella/core": "*",
-    "@hella/store": "*",
-    "@hella/resource": "*",
-    "@hella/router": "*"
+    "@hellajs/core": "*",
+    "@hellajs/store": "*",
+    "@hellajs/resource": "*",
+    "@hellajs/router": "*"
   }
 }

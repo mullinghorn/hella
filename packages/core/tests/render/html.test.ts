@@ -1,7 +1,7 @@
 import { describe, test, expect, beforeEach, afterEach } from "bun:test";
 import { html, render } from "../../lib";
 import { container, fn, renderTestCleanup, renderTestSetup } from "./setup";
-import { tick } from "@hella/core";
+import { tick } from "@hellajs/core";
 
 describe("html helper", () => {
   beforeEach(renderTestSetup);

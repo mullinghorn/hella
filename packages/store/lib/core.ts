@@ -6,7 +6,7 @@ import {
   StoreOptions,
   StoreComputed,
 } from "./types";
-import { isFunction, toError, effect, computed, Signal, UnknownFn } from "@hella/core";
+import { isFunction, toError, effect, computed, Signal, UnknownFn } from "@hellajs/core";
 import { storeProxy, storeSignal } from "./proxy";
 import { destroyStore, updateStore } from "./actions";
 import { storeWithFn } from "./utils";

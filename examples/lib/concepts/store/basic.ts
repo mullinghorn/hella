@@ -1,4 +1,4 @@
-import { store } from "@hella/store";
+import { store } from "@hellajs/store";
 
 interface AppStore {
   counter: number;

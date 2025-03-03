@@ -1,7 +1,7 @@
 import { describe, test, expect, mock } from "bun:test";
 import { store, StoreComputed } from "../lib";
-import { tick } from "@hella/core";
-import { computed, effect, signal } from "@hella/core";
+import { tick } from "@hellajs/core";
+import { computed, effect, signal } from "@hellajs/core";
 
 describe("reactive store", () => {
   test("initial", () => {

@@ -1,4 +1,4 @@
-import { signal, Signal } from "@hella/core";
+import { signal, Signal } from "@hellajs/core";
 import { StoreBase, StoreSignals, StoreValidatedArgs } from "./types";
 import { undefinedStoreProp, readonlyStoreProp } from "./utils";
 import { storeContext } from "./global";

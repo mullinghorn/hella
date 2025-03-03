@@ -1,5 +1,5 @@
 {
-  "name": "@hella/core",
+  "name": "@hellajs/core",
   "description": "signal based reactivity",
   "version": "0.0.1",
   "type": "module",

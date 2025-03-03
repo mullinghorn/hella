@@ -1,4 +1,4 @@
-import { router } from "@hella/router";
+import { router } from "@hellajs/router";
 
 const appRouter = router();
 

@@ -1,4 +1,4 @@
-import { isFunction, batchSignals } from "@hella/core";
+import { isFunction, batchSignals } from "@hellajs/core";
 import { StoreBase, StoreSignals, StoreUpdateArgs } from "./types";
 
 export function updateStore<T extends Record<string, unknown>>({

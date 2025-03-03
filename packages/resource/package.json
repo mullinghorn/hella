@@ -1,5 +1,5 @@
 {
-  "name": "@hella/resource",
+  "name": "@hellajs/resource",
   "description": "resource management",
   "version": "0.0.1",
   "type": "module",
@@ -19,7 +19,7 @@
     }
   },
   "peerDependencies": {
-    "@hella/core": "^0.0.1"
+    "@hellajs/core": "^0.0.1"
   },
   "files": [
     "dist",

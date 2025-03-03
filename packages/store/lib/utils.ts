@@ -1,4 +1,4 @@
-import { toError } from "@hella/core";
+import { toError } from "@hellajs/core";
 import { StoreWithFnArgs } from "./types";
 
 export function storeWithFn<T>({

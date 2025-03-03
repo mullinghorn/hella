@@ -1,5 +1,5 @@
-import { CleanupFunction } from "@hella/core";
-import { StoreSignals } from "@hella/store";
+import { CleanupFunction } from "@hellajs/core";
+import { StoreSignals } from "@hellajs/store";
 
 export interface RouterHella {
   store: StoreSignals<RouterState> | null;

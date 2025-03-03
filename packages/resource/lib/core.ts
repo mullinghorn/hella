@@ -1,4 +1,4 @@
-import { GenericPromise, isAbortError, isString, toError } from "@hella/core";
+import { GenericPromise, isAbortError, isString, toError } from "@hellajs/core";
 import { resourceConfig, resourceState } from "./utils";
 import { executeRequest } from "./actions";
 import { checkCache, destroyCache, updateCache } from "./cache";

@@ -1,5 +1,5 @@
-import { effect } from "@hella/core";
-import { store } from "@hella/store";
+import { effect } from "@hellajs/core";
+import { store } from "@hellajs/store";
 
 interface AppStore {
   counter: number;

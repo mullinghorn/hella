@@ -4,7 +4,7 @@ import {
   isAbortError,
   isString,
   toError,
-} from "@hella/core";
+} from "@hellajs/core";
 import { ResourceJSONArgs, ResourceRequestArgs } from "./types";
 
 /**

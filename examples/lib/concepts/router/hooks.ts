@@ -1,4 +1,4 @@
-import { afterNavigate, beforeNavigate, router } from "@hella/router";
+import { afterNavigate, beforeNavigate, router } from "@hellajs/router";
 
 const appRouter = router();
 

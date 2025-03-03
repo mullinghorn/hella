@@ -25,10 +25,10 @@ export const viteConfig = ({ name }: ViteConfigOptions) =>
         formats: ["es", "umd", "cjs"],
       },
       rollupOptions: {
-        external: ["@hella/core"],
+        external: ["@hellajs/core"],
         output: {
           globals: {
-            "@hella/core": "Hella",
+            "@hellajs/core": "Hella",
           },
         },
       },

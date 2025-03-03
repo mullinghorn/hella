@@ -1,4 +1,4 @@
-import { resource } from "@hella/resource";
+import { resource } from "@hellajs/resource";
 import { ApiTypes, BASE_URL } from "./types";
 
 const retryResource = resource<ApiTypes["User"]>(`${BASE_URL}/users/404`, {

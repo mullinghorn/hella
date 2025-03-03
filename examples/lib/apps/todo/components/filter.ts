@@ -1,4 +1,4 @@
-import { html } from "@hella/core";
+import { html } from "@hellajs/core";
 import { setTodoFilter, todoStore } from "../store";
 
 const { div, button } = html;

@@ -1,5 +1,5 @@
-import { render, html, signal } from "@hella/core";
-import {} from "@hella/core";
+import { render, html, signal } from "@hellajs/core";
+import {} from "@hellajs/core";
 
 const counter = signal(0);
 

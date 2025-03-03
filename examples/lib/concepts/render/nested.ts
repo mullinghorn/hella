@@ -1,4 +1,4 @@
-import { render } from "@hella/core";
+import { render } from "@hellajs/core";
 
 render(
   {

@@ -1,4 +1,4 @@
-import { html, signal } from "@hella/core";
+import { html, signal } from "@hellajs/core";
 import { addTodo } from "../store";
 
 const { form, input, button } = html;

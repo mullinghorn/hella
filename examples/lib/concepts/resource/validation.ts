@@ -1,4 +1,4 @@
-import { resource } from "@hella/resource";
+import { resource } from "@hellajs/resource";
 import { ApiTypes, BASE_URL } from "./types";
 
 const validatedResource = resource<ApiTypes["Todo"][]>(`${BASE_URL}/todos`, {

@@ -1,6 +1,6 @@
-import { effect } from "@hella/core";
-import { store } from "@hella/store";
-import { resource } from "@hella/resource";
+import { effect } from "@hellajs/core";
+import { store } from "@hellajs/store";
+import { resource } from "@hellajs/resource";
 
 interface Todo {
   id: string;

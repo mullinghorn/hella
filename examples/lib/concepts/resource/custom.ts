@@ -1,4 +1,4 @@
-import { resource } from "@hella/resource";
+import { resource } from "@hellajs/resource";
 import { ApiTypes, BASE_URL } from "./types";
 
 const customResource = resource<ApiTypes["User"]>(async () => {

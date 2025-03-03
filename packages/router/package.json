@@ -1,5 +1,5 @@
 {
-  "name": "@hella/router",
+  "name": "@hellajs/router",
   "description": "simple router",
   "version": "0.0.1",
   "type": "module",
@@ -19,7 +19,7 @@
     }
   },
   "peerDependencies": {
-    "@hella/core": "^0.0.1"
+    "@hellajs/core": "^0.0.1"
   },
   "files": [
     "dist",

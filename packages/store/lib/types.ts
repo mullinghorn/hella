@@ -1,4 +1,4 @@
-import { Signal, UnknownFn } from "@hella/core";
+import { Signal, UnknownFn } from "@hellajs/core";
 
 export interface StoreHella {
   stores: WeakMap<
