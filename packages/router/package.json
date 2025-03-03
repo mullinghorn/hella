@@ -1,7 +1,7 @@
 {
   "name": "@hellajs/router",
   "description": "A lightweight, type-safe JavaScript router library for building single-page applications with pattern matching, params extraction, and navigation guards.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "repository": {
     "type": "git",
