@@ -1,7 +1,7 @@
 {
   "name": "@hellajs/core",
   "description": "A lightweight JavaScript framework for building reactive interfaces",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "type": "module",
   "publishConfig": {
     "access": "public"
