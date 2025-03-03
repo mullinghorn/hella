@@ -27,11 +27,16 @@ A lightweight JavaScript framework for building reactive interfaces.
 
 ### Packages
 
-Required: `npm i @hellajs/core`
+**Required:**
+
+`npm i @hellajs/core`
+
+
+**Optional:**
+
+`npm i @hellajs/store @hellajs/resource @hellajs/router`
 
 ## Core Concepts
-
-Optional: `npm i @hellajs/store @hellajs/resource @hellajs/router`
 
 ### Reactive Components
 
