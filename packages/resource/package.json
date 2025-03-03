@@ -1,7 +1,7 @@
 {
   "name": "@hellajs/resource",
   "description": "A lightweight, type-safe JavaScript library for fetching, caching, and managing remote data with built-in reactivity.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "repository": {
     "type": "git",
