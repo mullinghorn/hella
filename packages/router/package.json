@@ -30,9 +30,6 @@
       "require": "./dist/index.cjs.js"
     }
   },
-  "dependencies": {
-    "@hellajs/store": "^0.1.0"
-  },
   "peerDependencies": {
     "@hellajs/core": "^0.1.0"
   },
