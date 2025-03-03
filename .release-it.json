@@ -5,15 +5,6 @@
     "push": true
   },
   "npm": {
-    "publish": true,
-    "publishConfig": {
-      "access": "public"
-    }
-  },
-  "plugins": {
-    "@release-it/conventional-changelog": {
-      "preset": "vite",
-      "infile": "CHANGELOG.md"
-    }
+    "publish": true
   }
 }
